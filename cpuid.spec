@@ -4,7 +4,7 @@
 #
 Name     : cpuid
 Version  : 20151017
-Release  : 2
+Release  : 3
 URL      : http://www.etallen.com/cpuid/cpuid-20151017.src.tar.gz
 Source0  : http://www.etallen.com/cpuid/cpuid-20151017.src.tar.gz
 Summary  : dumps CPUID information about the CPU(s)
