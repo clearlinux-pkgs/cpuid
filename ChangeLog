@@ -1,3 +1,84 @@
+Sun Aug 14 2016 Todd Allen <todd.allen@etallen.com>
+	* Made new release.
+	* Makefile: Added clean rules to remove tarballs & rpm's with other
+	  version numbers.
+
+Sun Aug 14 2016 Todd Allen <todd.allen@etallen.com>
+	* cpuinfo2cpuid: Added a script that takes input from a /proc/cpuinfo
+	  file and converts it into suitable input to cpuid.  The information
+	  that cpuid is capable of producing based on this very limited input
+	  information is slight, but apparently there is interest in getting the
+	  synthesized (synth) leaf from this.  There isn't much value in using
+	  it with an actual /proc/cpuinfo file on the local system, because just
+	  allowing cpuid to read the local cpuid info will provide better
+	  output.  But it could be useful for interpreted saved /proc/cpuinfo
+	  files from another system.  I slapped together the basic logic, and
+	  Jirka Hladky turned it into a proper perl script, with actual options,
+	  a help screen, and even documentation.  I then made some changes to
+	  give it some more uniform indentation, whitespace, and such.  And to
+	  give Jirka Hladky more credit, since his contribution to the script is
+	  larger than my own.
+	* Makefile: Added rules to generate cpuinfo2cpuid.man from the =pod data
+	  in the script.
+	* Makefile: Added cpuinfo2cpuid & cpuinfo2cpuid.man to the released
+	  materials.
+	* cpuid.proto.spec: Added cpuinfo2cpuid & cpuinfo2cpuid.1.gz to released
+	  materials.
+
+Sun Aug 14 2016 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Changed instances of Kb to KB.  In print_2_meaning, changed
+	  an instance of 4k to 4K.
+
+Sat Aug 13 2016 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added 7/ebx SGX & FDP_EXCPTN_ONLY flags.
+	* cpuid.c: Added 7/ecx BNDLDX/BNDSTX MAWAU value field, RDPID & SGX_LC.
+	* cpuid.c: Added d/0/eax MPX state field.
+	* cpuid.c: In print_d_0_eax, split MPX and AVX-512 all_or_none fields
+	  into their component parts.  Also added IA32_XSS PT state.
+	* cpuid.c: In print_d_n_ecx, clarify XCR0 as user state and IA32_CXX as
+	  supervisor state.
+	* cpuid.c: In print_d_n, add MPX and PT features.
+	* cpuid.c: Renamed leaf 0x10 to Intel's new name.  Corrected totally
+	  bogus interpretation of subleaf 0.
+	* cpuid.c: Generalize subleaf 0x10/1 to also include 0x10/2, and
+	  provide new Intel correct names for each.
+	* cpuid.c: Added 0x14/0 PTWRITE & power event trace.
+	* cpuid.c: Added description for leaf 0x12 (SGX Capability) and all its
+	  subleaves.
+	* cpuid.c: Added descriptionf or leaf 0x17 (SoC vendor) and its
+	  subleaves.
+	* cpuid.c: Decode new leaf 2 cache descriptors: 0x64 & 0xc4.
+	* cpuid.c: Updated Atom C2000 (Avoton) with A0/A1 steppings.
+	* cpuid.c: Added Atom Z3n00 (Bay Trail-T B2/B3) specific stepping 1.
+	* cpuid.c: Added Xeon D-1500 (Broadwell-DE) V2 stepping.
+	* cpuid.c: Corrected Atom Z8000 (Cherry Trail) with correct model, per
+	  changes in its spec update.
+	* cpuid.c: Change the (0,6),(5,14) Skylake descriptions to be more vague
+	  to reflect the larger set of existing processors now.
+	* cpuid.c: Add actual information for the (0,6),(4,14) Skylake
+	  processors.
+	* cpuid.c: Add actual information for the (0,6),(5,14) Broadwell-E
+	  processors.
+	* cpuid.c: Add actual information for the (0,6),(4,15) Broadwell and
+	  Broadwell-EX processors.
+	* cpuid.c: Added vague mentions of Goldmont (0,6),(5,12) and (0,6),(5,15)
+	  based on 325462 Table 35-1.
+	* cpuid.c: Add Atom S1200 (Centerton) under (0,6),(3,6) thanks to an
+	  example provided by Jirka Hladky.
+	* cpuid.c: Added Eden to the list of possible meanings of VIA
+	  (0,6),(6,13).  An example provided by Daniel Wyatt shows that they
+	  sometimes use the simple Eden brand for this architecture.
+	* cpuid.man: Added various new Intel documents used while making the
+	  above changes.
+	* cpuid.c: Made -f - operate on stdin.
+
+Wed Jun 22 2016 Alan Cox <alan@lxorguk.ukuu.org.uk>
+	* cpuid.c: Added out-of-memory checks to strregexp.
+
+Mon Oct 19 2015 Todd Allen <todd.allen@etallen.com>
+	* Updated cpuid.man's list of information sources with new sources used
+	  in the 20151017 release (and one renamed source).
+
 Sat Oct 17 2015 Todd Allen <todd.allen@etallen.com>
 	* Made new release.
 	* cpuid.c: Updated synth decoding for Broadwell processors.
