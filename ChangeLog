@@ -1,3 +1,193 @@
+Sat May 19 2018 Todd Allen <todd.allen@etallen.com>
+	* Made new release.
+
+Sat May 19 2018 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added some more fields reported by Stefan Kanthak, after
+	  tracking down some documentation that explains them:
+	* cpuid.c: Added 7/ecx bit 7: CET_SS and 7/edx bit 20: CET_IBT fields.
+	  So far, the only documentation for these is Control-flow Enforcement
+	  Technology Preview (334525), section 8.2 Feature Enumeration.
+	* cpuid.c: Added 7/ecx bit 16: 5-level paging.  So far, the only
+	  documentation for this is 5-Level Paging and 5-Level EPT White Paper
+	  (335252).
+	* cpuid.c: Improved 14/0/ecx descriptions.
+	* cpuid.c: Added hypervisor leaf descriptions from Microsoft's
+	  Hypervisor Top Level Functional Specification (Released Version 5.0b).
+	* cpuid.man: Added the above mentioned docs.
+
+Thu May 17 2018 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added CPUID features documented in PPR for AMD Family 17h
+	  Model 01h B1 (54945 Rev 1.14):
+	* cpuid.c: Added PCOMMIT to 7/ebx: PCOMMIT instruction (a deprecated
+	  instruction).
+	* cpuid.c: Added bits to 80000001/ecx (amd).
+	* cpuid.c: Added 80000007/ebx.
+	* cpuid.c: Added 80000007/ecx.
+	* cpuid.c: Added bits to 80000007/edx.
+	* cpuid.c: Added 80000008/ebx.
+	* cpuid.c: Added bits to 8000000a/edx.
+	* cpuid.c: Added bits to 8000001a/eax.
+	* cpuid.c: Added bits to 8000001b/eax.
+	* cpuid.c: Added tentative 8000001f descriptions.  Information obtained
+	  from Linux kernel 4.17-rc5 arch/x86/kernel/cpu/scattered.c (as patched
+	  by Tom Lendacky of AMD on 18-Apr-2017 via LKML), and from Secure
+	  Encrypted Virtualization API Version 0.16 Technical Preview
+	  (55766 Rev 3.06).
+	* cpuid.man: Added 54945 & 55766 docs.
+
+Thu Apr 19 2018 Todd Allen <todd.allen@etallen.com>
+	* Made new release.
+
+Wed Apr 19 2018 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Fixed various bugs reported by Stefan Kanthak:
+	* cpuid.c: Fixed bug in print_2_meaning: 0x49 normal & special cases.
+	* cpuid.c: Fixed bug in print_2_meaning: 0x63 additional 2M/4M, 4-way,
+	  32 entries item.
+	* cpuid.c: Collapsed print_2_meaning into print_2_byte so that the
+	  prefix and CONT are known in one place.
+	* cpuid.c: Fixed bug in print_2_byte: 0x7d is not sectored.
+	* cpuid.c: Fixed bug in print_2_byte: 0xc2 is 4K, not 4M.
+	* cpuid.c: Changed 6/ecx bit 0 to "hardware coordination feedback".
+	* cpuid.c; Changed 7/ebx bit 3 to "BMI1 instructions".
+	* cpuid.c: Change 7/ebx bit 12 to RDT-M.
+	* cpuid.c: Change 7/ebx bit 15 to RDT-A.
+	* cpuid.c: Corrected "0x40000003/ecx" label.
+	* cpuid.c; print_40000003_edx_microsoft: corrected "idle" spelling.
+
+Wed Apr 19 2018 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added mnemonic letters for some 1/ecx, 1/edx, and 7/ebx leaf
+	  fields.
+	* cpuid.c: Fixed bug with 4/ecx: field name should be "number of sets".
+	* cpuid.c: Fixed bug with 4/ecx leaf: pass ECX to it!
+	* cpuid.c; Fixed bug with 0x10/ecx: pass ECX to it!
+	* cpuid.c: Fixed bug with 0x10/edx: pass EDX to it!
+
+Sun Apr  8 2018 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added 2 leaf 0xfe encoding: TLB data in leaf 0x18.
+	* cpuid.c: Added new Intel 6/eax bit fields.
+	* cpuid.c: Added new Intel a/edx bit field: anythread deprecation.
+	* cpuid.c: Added new Intel d/0/eax bit field: IA32_XSS HDC state.
+	* cpuid.c: Added new Intel 10/0/ebx bit field: memory bandwidth alloc.
+	* cpuid.c: Added new Intel 12/0/eax bit fields
+	* cpuid.c: Added new Intel 18 leaf: deterministic address translation.
+	* cpuid.c: Added new Intel 7/ecx bit fields from Intel Architecture
+	  Instruction Set Extensions and Future Features Programming Reference.
+	* cpuid.c: Added new Intel 1b leaf from Intel Architecture
+	  Instruction Set Extensions and Future Features Programming Reference.
+	* cpuid.c: Added synth decoding for Avoton C0 stepping (same as B0).
+	* cpuid.c: Corrected synth decoding for Bay Trail-M C0 steppings.
+	* cpuid.c: Added synth decoding for Bay Trail-I (E3800).
+	* cpuid.c: Added synth decoding for Xeon D-1500N (Broadwell-DE A1).
+	* cpuid.c: Added synth decoding for Xeon E7-4800/8800 (Broadwell-EX B0).
+	* cpuid.c: Correct synth decoding for Bay Trail A0.
+	* cpuid.c: Added synth decoding for Bay Trail D0.
+	* cpuid.c: Added synth decoding for Core X-Series (Skylake-X).
+	* cpuid.c: Added synth decoding for Xeon Scalable (Bronze, Silver, Gold,
+	  Platinium) (Skylake).
+	* cpuid.c: Added synth decoding for Pentium Silver (Gemini Lake).
+	* cpuid.c: Added synth decoding for AMD Zen.
+	* cpuid.man: Added new spec updates & PPR.
+
+Fri Nov  3 2017 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c, cpuid.man: Attribute whitepaper to Shih Kuo.
+
+Wed Jun 22 2017 Lars Wendler <polynomial-c@gentoo.org>
+	* cpuid.c: recent glibc versions no longer automagically include
+	  sysmacros.h headers. This needs to be done by the source files itself
+	  now.
+
+Fri Mar  3 2017 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added missing SDBG bit to 1/ecx leaf.
+
+Sun Jan 22 2017 Todd Allen <todd.allen@etallen.com>
+	* Made new release.
+	* cpuid.c: Use __cpuid_count macro for "cpuid" instruction if possible.
+	  This macro is present in gcc 4.3.0 and later, and works around the fact
+	  that the cpuid instruction writes on the PIC register.  This is only
+	  important when compiling PIC/PIE.
+	* cpuid.c: Added synth decoding for Intel Knights Landing B0.  The Intel
+	  docs still don't specify the stepping numbers, but all examples seen
+	  so far have stepping number 1, and so far B0 is the only stepping.
+	* cpuid.c: Added new synth decodings for Intel Kaby Lake.
+	* cpuid.c: Fixed synth decodings for AMD Steamroller.
+	* cpuid.c: Fixed synth decodings for AMD Jaguar.
+	* cpuid.c: Added synth decodings for AMD Puma.
+	* cpuid.c: Added synth decodings for AMD Excavator.
+	* cpuid.c: For (6,15),(0,2) Piledriver processors, detect FX series
+	  and report it as Vishera instead of Abu Dhabi/Seoul/Delhi.
+	* cpuid.c: Added general microarchitecure names for AMD (e.g.
+	  Piledriver) in addition to specific core names (e.g. Trinity) for
+	  later generation processors.  If I have trouble remembering these,
+	  it seems likely other people do too.
+	* cpuid.c: Added synth decoding for Quark X1000.
+	* cpuid.c: Added Intel Atom Z2760 (Clover Trail).
+	* cpuid.c: Added extra synth decodings for some Sandy Bridge processors.
+	* cpuid.c: Added extra synth decodings for some Ivy Bridge processors.
+	* cpuid.man: Added new & missing spec updates & revision guides.
+	* FUTURE: Cleaned this up somewhat.
+
+Mon Dec  5 2016 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Removed stale len variable from do_file().
+
+Thu Dec  1 2016 Todd Allen <todd.allen@etallen.com>
+	* Made new release.
+
+Wed Nov 30 2016 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Fixed bugs in the subleaf walks for 0x8000001d (AMD cache
+	  information) and 0x40000003 (Xen hypervisor information) because the
+	  code for them was under wholly the wrong loops.  Thanks to Brice
+	  Goglin for detecting this and working out the cause of the bug.
+
+Wed Nov 16 2016 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Updated comments referencing 325462 Table 35-1 to also
+	  specify Volume 3.
+	* cpuinfo2cpuid: Added grep commands to EXAMPLES.
+
+Mon Nov 14 2016 Todd Allen <todd.allen@etallen.com>
+	* Made new release.
+	* cpuid.man: Added 334663 & 334820 spec updates.
+
+Sun Nov 13 2016 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Fixed bug reported by Andrew Cooper where, in do_real, for
+	  the 0xd leaf, the lower half of the valid bit set for XSS should've
+	  used 0xd/1/ecx instead of 0xd/1/eax.  Sadly, this bug affects raw
+	  dumps too.
+	* cpuid.c: Added -l/--leaf and -s/--subleaf options to cause cpuid
+	  to dump just the specified leaf and subleaf.  If -s/--subleaf is not
+	  specified, it is assumed to be 0.  The intended purpose for this is
+	  to display raw dumps of not-yet-supported leaves, or to workaround
+	  bugs like the above.
+
+Sat Nov 12 2016 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: In bits_needed, add a further check for !defined(__ILP32__),
+	  which should help with building a 32-bit version of cpuid on a 64-bit
+	  system.
+
+Sat Nov 12 2016 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Made editorial changes to Piotr Luc's patches (spelling,
+	  capitalization, register order, comments, etc.).
+	* cpuid.c: Added AVX512DQ, AVX512IFMA, AVX512BW, AVX512VL, and CLWB
+	  decoding to 7/ebx.
+	* cpuid.c: Added AVX512VBMI to 7/ecx.
+	* cpuid.c: Added print_f_0_edx to show L3 cache QoS monitoring support.
+	* cpuid.c: Added total & local bandwidth monitoring to 0xf/1/edx.
+	* cpuid.c: Added 0x15/ecx nominal core crystal clock decoding.
+	* cpuid.c: In print_17_0_ebx, corrected reversed scheme encodings.
+	* cpuid.c: Added synth decoding for Xeon D-1500 (Broadwell-DE) Y0
+	  stepping.
+	* cpuid.c: Added synth decoding comment about Braswell D1 stepping, but
+	  its stepping number isn't documented.
+	* cpuid.c: Added synth decoding for (0,6),(8,14) Kaby Lake processors.
+	* cpuid.c: Added synth decoding for Apollo Lake processors.
+	* cpuid.c: Added vague synth decoding for (0,6),(9,14) Kaby Lake
+	  processors.
+	* cpuid.c: Re-sorted (0,6),(5,7) Knights Landing to correct position.
+	* cpuid.c: Re-sorted (0,6),(5,15) Goldmont to correct position.
+
+Sat Oct 27 2016 Piotr Luc <Piotr.Luc@intel.com>
+	* cpuid.c: Add AVX512_4VNNIW & AVX512_4FMAPS flags.
+	* cpuid.c: Add Knights Mill (KNM) CPUID.
+
 Sun Aug 14 2016 Todd Allen <todd.allen@etallen.com>
 	* Made new release.
 	* Makefile: Added clean rules to remove tarballs & rpm's with other
