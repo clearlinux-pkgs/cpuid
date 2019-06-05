@@ -4,7 +4,7 @@
 #
 Name     : cpuid
 Version  : 20180519
-Release  : 9
+Release  : 10
 URL      : http://www.etallen.com/cpuid/cpuid-20180519.src.tar.gz
 Source0  : http://www.etallen.com/cpuid/cpuid-20180519.src.tar.gz
 Summary  : dumps CPUID information about the CPU(s)
