@@ -1,3 +1,113 @@
+Sun Jan 12 2020 Todd Allen <todd.allen@etallen.com>
+	* Made new release.
+
+Sun Jan 12 2020 Todd Allen <todd.allen@etallen.com>
+	* Makefile, cpuid.proto.spec: Added INSTALL_STRIP to allow disabling the
+	  install -s option.  This makes rpmbuild & find-debuginfo.sh happy,
+	  because they can find the cpuid debug information and create the
+	  cpuid-debuginfo rpm.
+	* Makefile: Updated release target to move debugsource rpms too.
+
+Sun Jan 12 2020 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added 0x40000004 leaf for Xen hypervisor.
+	* cpuid.c: Added 0x40000005 leaf for Xen hypervisor.
+	* cpuid.c: Fixed errors with static ccstring arrays that were not large
+	  enough to hold NULLs for all reserved bit field values.
+	* cpuid.c: Added AMD's CMT "compute unit" concept to print_apic_synth
+	  by adding that architectural level above the "cores" level, which
+	  relects AMD's portrayal.  This level is displayed only if it is
+	  present.
+	* cpuid.c: Added some undocumented synth decodings found on
+	  https://en.wikichip.org/wiki/amd/cpuid.  Not everything there makes
+	  sense, so I didn't take everything.  Marked with comments.
+	* cpuid.c: Added architecture tags to Intel synth decodings:
+	  [Willamette], [Northwood], [Prescott], [Merom], [Penryn], [Nehalem],
+	  [Westmere].  After that, Intel dropped the hyper-specific code names
+	  in favor of suffix letters.
+	* cpuid.c: Added architecture tags to Intel synth decodings: [Bonnell],
+	  [Saltwell], [Silvermont], [Airmont], [Goldmont], Goldmont Plus].
+	  Intel continues to use hyper-specific names for Atom CPUs.
+
+Sat Jan 11 2020 Todd Allen <todd.allen@etallen.com>
+	* Makefile: Added -Wimplicit-fallthrough -Wunused-parameter options.
+	* cpuid.c: Clarified 4/edx WBINV/INVD flag.
+	* cpuid.c: Added new 7/edx flags, especially including new features to
+	  mitigate speculative execution exploits.
+	* cpuid.c: Cleaned up output of 0x10 subleaves.
+	* cpuid.c: Added 0x12/0/ebx CPINFO for #CP exceptions in enclave.
+	* cpuid.c: Properly display 0x18 sub-leaf number.
+	* cpuid.c: Added leaf 0x1f V2 Topology logic to decode_mp_synth() and
+	  print_apic_synth().  I have no physical examples, so I only could test
+	  with artificial input files.
+	* cpuid.c: Added 3-way and 6-way associativity to 0x80000006 and
+	  0x80000019 leaves.
+	* cpuid.c: Fixed incorrect fallthrough in switch for "41322 3.74:
+	  table 16".
+	* cpuid.c: Fixed incorrect fallthrough's in switch for Family 12h tables.
+	* cpuid.c: Added UNUSED macro to make newer gcc's shut up about unused
+	  formals.  (They have one complaint if the name is omitted, and another
+	  complaint if it's specified but unused.  There's just no pleasing gcc.)
+	* cpuid.c: Added break after usage() to make gcc shut up about a
+	  nonexistent fallthrough (even though it was marked with NOTREACHED).
+	* cpuid.c: Added missing newlines to all the print_2_byte Cyrix/VIA
+	  special cases.
+	* cpuid.c: Fixed print_f_0_edx: QoS monitoring was in 0xf/0 bit 1, not
+	  bit 0.
+	* cpuid.c: Added print_40000001_edx_kvm and appropriate call.
+	* cpuid.c: For 0x80000001/ebx amd, display PkgType for all family 16h
+	  or higher systems, even if no specific BrandId breakdown is known.
+	  Added encodings from AMD BKDG and PPR documents.
+
+Sat Jan 11 2020 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added proper synth decoding for Atom C3000 (Denverton).
+	* cpuid.c: Clarified Goldmont into eithe Apollo Lake or Denverton.
+	* cpuid.c: Corrected (0,6),(9,14) synth decoding to be Coffee Lake.
+	* cpuid.c: Added (0,6),(9,14) Coffee Lake synth decoding steppings.
+	* cpuid.c: Added (0,6),(9,14) Coffee Lake synth decoding for Xeon E-2100
+	  & E-2200.
+	* cpuid.c: Added (0,6),(5,5),7 synth decoding for Xeon 2nd Gen Scalable.
+	* cpuid.c: Added (0,6),(5,5),7 synth decoding for Xeon D-2100.
+	* cpuid.c: Added synth decoding for Gemini Lake R0 stepping (same as B0).
+	* cpuid.c: Added vague synth decoding for (0,6),(6,6) Cannon Lake.
+	* cpuid.c: Added vague synth decoding for (0,6),(6,10) Ice Lake.
+	* cpuid.c: Added vague synth decoding for (0,6),(6,12) Ice Lake.
+	* cpuid.c: Added vague synth decoding for (0,6),(7,13) Ice Lake.
+	* cpuid.c: Added additional synth decodings for AMD Ryzen, including
+	  Pinnacle Ridge.
+	* cpuid.c: Differentiate Ryzen from EPYC using brand string and new
+	  query functions.
+	* cpuid.man: Added new spec updates, revision guides, etc.
+
+Sat Jan 11 2020 Todd Allen <todd.allen@etallen.com>
+	* Prettification of Masanori Misono's 0x40000001/eax KVM fields.
+	* Formatting changes & URL removal from Jeffrey Walton's SunOS patch.
+	* Prettification of Thomas Friebel's 0x40000003 leaf fix: while loop.
+	* Reverted print_header() to use !raw (personal preference of mine).
+	* Format changes to & rearrangement of fanjinke's Hygon patch.
+
+Fri Jan  3 2020 Thomas Friebel <friebelt@amazon.de>
+	* Fixed bug that skipped half the subleaves in the 0x40000003 hypervisor
+	  leaf.
+	* Fixed contradictory try logic in print_header() for leaf 0x40000003.
+	* Fixed to use 0x40000003/ebx for high 32 bits of vtsc_offset,
+	  instead of using eax for both high & low 32 bits.
+
+Mon May 13 2019 fanjinke <fanjinke@hygon.cn>
+	* Added Hygon support.
+
+Wed May  8 2019 Jeffrey Walton <noloader@gmail.com>
+	* cpuid.c: Added support for SunOS build.
+
+Sat Mar  2 2019 Masanori Misonoc <m.misono760@gmail.com>
+	* cpuid.c: Added 0x40000001/eax KVM bit fields.
+
+Fri Jun  1 2018 Tony Luck <tony.luck@intel.com>
+	* cpuid.c: Added decoding of 0x10/3 subleaf.
+
+Sat May 26 2018 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Fixed 7/ecx spelling error: intruction.
+	* cpuid.c: Fixed main spelling error: unrecogized.
+
 Sat May 19 2018 Todd Allen <todd.allen@etallen.com>
 	* Made new release.
 
