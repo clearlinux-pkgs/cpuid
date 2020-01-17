@@ -1,3 +1,97 @@
+Thu Jan 16 2020 Todd Allen <todd.allen@etallen.com>
+	* Made new release.
+
+Thu Jan 16 2020 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added decode_uarch*() and moved the uarch suffixes there from
+	  print_synth*().  print_synth_intel() and print_synth_amd() now call
+	  that function to get the suffixes.
+	* cpuid.c: Added print_uarch_synth() to display just those suffixes.
+	* cpuid.c: Added (synth) decoding for Itanium Poulson & Kittson.
+	* cpuid.c: Correct (synth) decoding for Itanium Montecito, Millington,
+	  Montvale, Tukwila.
+	* cpuid.c: Cleaned up AMD [Excavator] core names.
+	* cpuid.man: Added some missing Intel spec updates.
+
+Wed Jan 15 2020 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added "(family synth)" and "(model synth)" to do the combined
+	  values used by the linux kernel and AMD.  That is:
+	     Family = XF + F
+	     Model  = (XM << 4) + M
+	* cpuid.c: Hunt down the fallback (synth) decodings that just list tons
+	  of different possible meanings, all copied from the more specific
+	  lines above them.  They almost always are wrong; if they were right,
+	  the more specific tests would've detected them.  So, they're pure
+	  guesswork.  Replace them with "(unknown type)", which is more honest.
+	* cpuid.c: Simplified Intel Xeon Scalable descriptions.
+	* cpuid.c: Eliminated reiteration of i3-XXXX, i5-XXXX, i7-XXXX CPUs,
+	  using i*-XXXX instead.
+	* cpuid.c: Added (synth) decoding for Core i*-4000U seen in the wild.
+	* cpuid.c: Correct missing = symbol in 0x80000001/eax transmeta leaf.
+	* cpuid.c: Added [K6], [K7], [K8] (synth) clarifications for AMD K8 CPUs.
+	* cpuid.c: Added (6,15),(6,5) (synth) based on sample from Alexandros
+	  Couloumbis.
+	* cpuid.c: Added AMD "*-Series" queries for the various latters and
+	  (synth) rules to use them.  Added more rules for AMD architectures
+	  that used this nomenclature.
+	* cpuid.c: Changed dO query to sO.
+
+Wed Jan 15 2020 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Clarified (synth) for each microarchitecture to include
+	  process-neutral microarchitecture names too:
+	  {P6}           = (Pentium Pro, Klamath, Deschutes, Katmai, Coppermine,
+	                    Tualatin, Mendocino, Cascades)
+	  {Netburst}     = [Willamette, Northwood, Prescott, Cedar Mill]
+	  {P6 Pentium M} = (Banias), [Dothan, Yonah]
+	  {Core}         = [Merom, Penryn]
+	  {Nehalem}      = [Nehalem, Westmere]
+	  {Sandy Bridge} = (Sandy Bridge, Ivy Bridge)
+	  {Haswell}      = (Haswell, Broadwell)
+	  {Skylake}      = (Skylake, Kaby Lake, Coffee Lake, Whiskey Lake,
+	                    Amber Lake, Cascade Lake, Comet Lake, Cooper Lake,
+	                    Cannon Lake)
+	  {Sunny Cove}   = (Ice Lake, Tiger Lake)
+	  The similarities are hazy in places.  But this seems useful to help
+	  people who, for example, don't know "Cedar Mill", but do know
+	  "Netburst".  Also the number of Skylake-related architecture names
+	  exploded, and not all "Lake" names belong to Skylake, so this helps to
+	  clarify.
+	* cpuid.c: Corrected (synth) for Tolapai to 90nm process.
+
+Tue Jan 14 2020 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Clarified Arrandale & Clarkdale as [Westmere].
+	* cpuid.c: Clarified Bloomfield, Gainestown & Beckton as [Nehalem].
+	* cpuid.c: Added [Merom] clarification to a couple CPUs that missed it.
+	* cpuid.c: Added [Cedar Mill] clarification to a couple CPUs that missed
+	  it.
+	* cpuid.c: Clarified Dothan, Stealey, Crofton & Tolopai as [Dothan].
+	* cpuid.c: Clarified Yonah, Sossaman as [Yonah].
+	* cpuid.c: Did not clarify Banias as [Banias] because it appears there
+	  are no non-Banias chips based on it.
+	* cpuid.man: Added handy wiki pages about microarchitectures.
+
+Mon Jan 13 2020 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added 6/eax HW_FEEDBACK flag.
+	* cpuid.c: Added 7/0/ecx ENQCMD flag.
+	* cpuid.c: Added 7/0/edx AVX512_VP2INTERSECT flag.
+	* cpuid.c: Added 7/1/eax AVX512_BF16 flag.
+	* cpuid.c: Added 0xd/0/eax flags for CET_U & CET_S state.
+	* cpuid.c: Added 0x80000008/ebx WBNOINVD flag.
+	* cpuid.c: Added 0x80000008/ebx SSBD flags from AMD white paper.
+	* cpuid.c: In 7/0/edx leaf, clarified PCONFIG as an instruction.
+	* cpuid.c: Added synth detection for Cyrix MediaGX (circa 1997 SoC).
+	* cpuid.c: Added 7/0/ecx TME flag, discovered in the linux-5.5-rc6
+	  kernel source.
+	* cpuid.c: Added 0x80000008/ebx additional STIBP always on flag,
+	  discovered in the linux-5.5-rc6 kernel source.
+	* cpuid.man: Added AMD SSBD white paper.
+	* cpuid.man: Added linux kernel note and clue on what to look for.
+
+Sun Jan 12 2020 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added Matisse B0 stepping based on sample from Steven Noonan.
+	* cpuid.c: Removed redundant dR lines from Pinnacle Ridge.  (They could
+	  come back if I see an EPYC based on Pinnacle Ridge, but they're
+	  redundant now.)
+
 Sun Jan 12 2020 Todd Allen <todd.allen@etallen.com>
 	* Made new release.
 
@@ -25,7 +119,7 @@ Sun Jan 12 2020 Todd Allen <todd.allen@etallen.com>
 	  [Westmere].  After that, Intel dropped the hyper-specific code names
 	  in favor of suffix letters.
 	* cpuid.c: Added architecture tags to Intel synth decodings: [Bonnell],
-	  [Saltwell], [Silvermont], [Airmont], [Goldmont], Goldmont Plus].
+	  [Saltwell], [Silvermont], [Airmont], [Goldmont], [Goldmont Plus].
 	  Intel continues to use hyper-specific names for Atom CPUs.
 
 Sat Jan 11 2020 Todd Allen <todd.allen@etallen.com>
