@@ -1,3 +1,72 @@
+Thu Jan 20 2020 Todd Allen <todd.allen@etallen.com>
+	* Made new release.
+
+Sun Jan 19 2020 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Fixed (synth) decoding of Kaby Lake vs. Coffee Lake (and
+	  their myriad "optimizations").
+	* cpuid.c: Correctly (synth) decoding of Comet Lake, which was wildly
+	  wrong.
+	* cpuid.c: Treating Whiskey Lake, Amber Lake, and Comet Lake as distinct
+	  uarchs just causes absurd "Coffee Lake / Whiskey Lake / Amber Lake /
+	  Comet Lake" uarch strings.  Instead, call all of them Coffee Lake, but
+	  turn off the core_is_uarch flag.  This ends up treating the other 3 as
+	  core names within the Coffee Lake uarch, which seems clearer.
+	* cpuid.c: Renamed Ice Lake to Sunny Cove when talking about uarch.
+	* cpuid.c: Renamed Tiger Lake to Willow Cove when talking about uarch.
+	* cpuid.c: Added (synth) differentiation between Whiskey Lake (U line)
+	  & and Amber Lake (Y line).
+	* cpuid.c: Added (synth) differentiation between Whiskey Lake (8000
+	  Series) and Comet Lake (10000 Series).
+	* cpuid.c: Separated (synth) for Goldmont Plus into Pentium & Celeron.
+	* cpuid.c: Fixed Moorefield (synth) to say Z3500 instead of Z3400.
+	* cpuid.c: Fixed (0,6),(5,5),7 to Cascade Lake-X.  Core names should be
+	  as specific as possible (in contrast to uarch names).
+	* cpuid.c: added (0,6),(2,7) Atom Z2000 Medfield (synth) based on
+	  example found on instlatx64.
+	* cpuid.c: Renamed Cedarview (SoC name) to Cedar Trail (core name).
+	* cpuid.c: Added (0,6),(1,15) Havendale/Auburndale (synth).
+	* cpuid.c: Added VIA (0,6),(0,15) Esther C5J (synth).
+	* cpuid.c: Added VIA Nano steppings to (synth).
+	* cpuid.c: Added AMD Ryzen vs. EPYC (synth) differentiation to
+	  Castle Peak / Rome.
+	* cpuid.c: Separated Mullins into Mullins (tablets) and Beema (desktop).
+	* cpuid.c: Separated Kabini into Kabini (desktop) and Kyoto (servers).
+	  Also added Temash for A-Series, although they're all mixed up with
+	  Kabini.
+	* cpuid.c: Added AMD (6,15),(3,8) Godavari (synth) decoding.
+	* cpuid.c: Added AMD (2,15),(0,3) Griffin (synth) decodings.
+	* cpuid.c: Removed duplicate junk code for AMD (1,15),(0,2) which
+	  prevented the 3 and 10 steppings from being used.
+	* cpuid.c: Corrected some AMD (0,6),(0,8) Duron Applebred (synth) names.
+	* cpuid.c: Added AMD DG02SRTBP4MFA based on example found on instlatx64.
+
+Fri Jan 17 2020 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Merged 0xb and 0x1f leaf code, much like what Len Brown of
+	  Intel suggested a year ago.  I don't know why I didn't just do that in
+	  the first place.  Merged field names look more like the 0x1f names,
+	  because I thought they were clearer.
+	* cpuid.c: Removed type descriptions from "--- level ---" sub-headers.
+	  Intel docs clarify the levels and types are not related.
+	* cpuid.c: Got rid of the ridiculously overloaded 1/eax family
+	  descriptions.  That information is nearly useless in isolation and
+	  described much better in the new (uarch synth) field.
+	* cpuid.c: Also got rid of 0x80000001/eax family descriptions.  It
+	  wasn't nearly as bad, but still better to use the (uarch synth) field.
+	* cpuid.c: Because I removed that family information, also updated the
+	  decode_uarch* functions with information about older CPU makers'
+	  information.
+	* cpuid.c: Added vendor name to (uarch synth).
+	* cpuid.c: Fixed 4 and 0x8000001d leaf descriptions to say that the
+	  values are in "minus 1" notation.  Steven Noonan hinted that there was
+	  something to check here, and there was.
+	* cpuid.c: Added (synth size) field to the 4 and 0x8000001d leaves to
+	  compute the cache size, also based on a hint from Steven Noonan.
+	* cpuid.c: Added preliminary Zhaoxin decoding based on limited
+	  information I could find.
+	* cpuid.c: Added missing uarch names to decode_uarch_intel().
+	* cpuid.c: Added note about P5 Tillamook CPUs.
+	* cpuid.c: Added some more die process values.
+
 Thu Jan 16 2020 Todd Allen <todd.allen@etallen.com>
 	* Made new release.
 
