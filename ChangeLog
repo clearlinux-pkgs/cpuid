@@ -1,4 +1,27 @@
-Thu Jan 20 2020 Todd Allen <todd.allen@etallen.com>
+Wed Jan 22 2020 Todd Allen <todd.allen@etallen.com>
+	* Made new release.
+
+Wed Jan 22 2020 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: In print_80000001_ebx_amd, removed two checks for
+	  __M(val_1_eax) >= _XM(0) + _M(0).  Yes, gcc, I know that "comparison
+	  of unsigned expression >= 0 is always true", and I also know even a
+	  half-assed optimizer will get rid of it, so I preferred clarity.  But
+	  people freak out if the compiler emits any warnings, no matter what
+	  crazy -W options the've chosen.  So I'm removing them.
+	* cpuid.c: Changed a bunch of ccstring return types to cstring.  The
+	  extra const in ccstring was meaningless for return types, but it
+	  caused a ton of additional -Wignored-qualifiers warnings.  No grousing
+	  about those warnings; they seem legit.
+	* Makefile: Added -Wextra, so I'll see these before people complain
+	  about them in the future.
+
+Tue Jan 21 2020 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Changed Cannon Lake to Palm Cove when talking about uarch.
+	* cpuid.c: Added extra (0,6),(8,14),12 (unknown type) fallback.
+	* cpuid.c: Fixed (0,6),(8,14) Whiskey Lake typo.
+	* cpuid.c: Added i*-9000 names to (0,6),(9,14) Coffee Lake CPUs.
+
+Mon Jan 20 2020 Todd Allen <todd.allen@etallen.com>
 	* Made new release.
 
 Sun Jan 19 2020 Todd Allen <todd.allen@etallen.com>
