@@ -1,3 +1,33 @@
+Mon Apr 27 2020 Todd Allen <todd.allen@etallen.com>
+	* Made new release.
+
+Wed Apr 22 2020 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added synth decoding for AMD Steppe Eagle/Crowned Eagle
+	  (Puma 2014 G-Series), based on instlatx64 sample.
+
+Thu Apr 16 2020 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added 7/0/edx SERIALIZE & TSXLDTRK bit descriptions.
+	* cpuid.c: Added 0xf/1/eax Counter width & overflow flag.
+	* cpuid.c: Added 0x10/3/ecx per-thread MBA controls flag.
+	* cpuid.c: Added 0x8000001f fields.
+	* cpuid.man: Added AMD 24594 & 40332 docs.
+
+Tue Mar  3 2020 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Corrected field lengths in 14/0 and 14/1 subleafs so that
+	  columns line up.
+
+Thu Feb 27 2020 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added CC150 (Coffee Lake R0) synth decoding, based on
+	  instlatx64 example.
+
+Wed Feb 26 2020 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added Jasper Lake A0 stepping (from Coreboot*).
+	* cpuid.c: Updated 1/ebx "cpu count" to modern terminology: "maximum
+	  addressible IDs for CPUs in pkg" to avoid user confusion.  It was a
+	  reliable count of the number of CPUs for only a split second some time
+	  around 2002.  Maybe.
+	* cpuid.c: Updated 4/eax CPU & core count terminology in the same way.
+
 Tue Feb 11 2020 Todd Allen <todd.allen@etallen.com>
 	* Made new release.
 
