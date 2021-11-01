@@ -1,3 +1,128 @@
+Sun Oct 31 2021 Todd Allen <todd.allen@etallen.com>
+	* Made new release.
+
+Sun Oct 31 2021 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Support hypervisors which can move their range of leaves
+	  to other base addresses, to support hypervisors under other
+	  hypervisors: IS_HYPERVISOR_LEAF(), print_hypervisor_*().
+	* cpuid.c: Separated out get_hypervisor().  This ended up being
+	  unnecessary, but I prefer it anyway.
+	* cpuid.c: Added print_esc_substring() to print hypervisor_id values
+	  that contain non-graphic characters.
+
+Fri Oct 29 2021 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Improved (synth) decoding for Intel Xeon (3rd Gen) D2/M1
+	  steppings.
+
+Wed Oct 27 2021 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added 0x40000001/eax support for ACRN hypervisor.  Untested.
+	* cpuid.c: Added better decoding of 0x12/1 SECS.ATTRIBUTES fields.
+
+Tue Oct 26 2021 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added 5,3 model for Cyrix M1 6x86, based on Cyrix 6x86
+	  Processor, Instruction Set document (M1-6).
+	* cpuid.c: Corrected wrong register passed to
+	  print_40000009_edx_microsoft().
+
+Mon Oct 25 2021 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Adapted patch from Brian Inglis for easier Cygwin cygport,
+	  but made an effort to reduce duplicate header file references, and
+	  use of <sys/cpuset.h> for the right reasons (i.e. a more general
+	  change).
+	* cpuid.c: For 12/n/ebx & 12/n/edx (n >= 2), mask the high 12 bits.
+	* cpuid.c: Added 0x40000001/eax(KVM) map gpa range hypercall &
+	  MSR_KVM_MIGRATION_CONTROL.
+
+Sun Oct 24 2021 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Add (synth) decoding for additional Alder Lake steppings.
+	* cpuid.c: Generalize (synth) decoding for Elkhart Lake B0.
+	* cpuid.c: Added 0x8000000a/edx guest SVME addr check.
+	* cpuid.c: Added 7/0/ecx bus lock detection.
+	* cpuid.c: Added 7/0/edx RTM transaction always aborts, TSX_FORCE_ABORT.
+	* cpuid.c: Added 0x40000001/eax (KVM) extended destination ID.
+	* cpuid.c: Added (synth) decoding for Vortex86EX2 & Vortex86DX2.  Info
+	  on these is almost nonexistent, so it's possible that these rules are
+	  too specific or too vague.
+	* cpuid.c: Improved (synth) decoding for Tiger Lake: Pentium & Celeron.
+	* cpuid.c: Improved (synth) decoding for Elkhart Lake: Pentium & Celeron.
+	* cpuid.c: Improved (synth) decoding for Jasper Lake: Pentium & Celeron.
+	* cpuid.c: Improved (synth) decoding for (0,6)(10,5) Comet Lake:
+	  Pentium, Celeron & Xeon.
+	* cpuid.c: Improved (synth) decoding for (0,6),(6,10) Ice Lake:
+	  Xeon Scalable.
+	* cpuid.c: Improved (synth) decoding for AMD (8,15),(1,1) Raven Ridge:
+	  Athlon Pro 200.
+	* cpuid.c: Improved (synth) decoding for AMD (8,15),(1,8) Picasso:
+	  Athlon Pro 300.
+	* cpuid.c: Added (synth) decoding for AMD 4700S Desktop Kit.
+	* cpuid.c: Added (synth) decoding for AMD (8,15),(4,7) Lucienne.
+
+Sun Oct 24 2021 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added 0x80000008/ecx tscSize.
+	* cpuid.c: Added 0x8000001c/{eax,edx} continuous mode sampling.
+	* cpuid.c: Added 0x8000001c/{eax,edx] tsc in event record.
+	* cpuid.c: Added (synth) decoding for AMD Milan B1.
+	* cpuid.c: Added (synth) decoding for AMD Vermeer.
+	* cpuid.c: Added (synth) decoding for AMD Cezanne.
+
+Sat Oct 23 2021 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Renamed 7/0/ecx 5-level paging to include LA57 & 57-bit addrs.
+	* cpuid.c: Improved 0xa/ebx presentation, and automatically mask bits
+	  marked as invalid by 0xa/eax vector length.
+	* cpuid.c: Added 0x12/n/ecx new section property encoding.
+	* cpuid.c: Renamed Rocket Lake uarch to Cypress Cove.
+	* cpuid.c: Improved (synth) decoding for Tiger Lake.
+	* cpuid.c: Improved (synth) decoding for Rocket Lake.
+
+Fri Jul 16 2021 Ani Sinha <ani@anisinha.ca>
+	* cpuid.c: Add support for 0x40000003/eax reenlightenment control MSR
+	  & 0x40000003/eax TscInvariant control MSR [on Microsoft Hyper-V].
+
+Fri Jul 16 2021 Smita Koralahalli Channabasappa <Smita.KoralahalliChannabasappa@amd.com>
+	* cpuid.c: restoring the deleted "AMD (unknown model)" entry.
+
+Mon Jul 12 2021 Smita Koralahalli Channabasappa <Smita.KoralahalliChannabasappa@amd.com>
+	* cpuid.c: updates the existing leaf and subleaf in the CPUID with
+	  features related to INVLPGB, CPPC, PSFD, SEV [affects 0x80000008/edx,
+	  0x80000008/edx, and 0x8000001f/eax].
+	* cpuid.c: defines new leaf 80000021/eax.
+	* cpuid.c: replaces the naming "Unknown Model" -> "AMD EPYC Milan" for
+	  Family 19h and Model 01h [affects (synth) decoding].
+
+Tue Feb  2 2021 Jonathan Teh <jonteh@ntlworld.com>
+	* From http://datasheets.chipdb.org/Cyrix/112ap.pdf (page 7, table 1):
+	* cpuid.c: Cyrix family 4 model 4 should be MediaGX or GXi
+	* cpuid.c: GXm is family 5, model 4
+	* cpuid.c: Cyrix MediaGX is derived from the 5x86 and unrelated to the
+	  WinChip C6. Based on Wikipedia, the MediaGXm was renamed the Geode GXm
+	  after it was sold to National Semi but the CPUs appear to have
+	  continued to be sold under the Cyrix vendor up to and including the
+	  Geode GX1. Hence, I've simply duplicated the names from NSC model 4
+	  into Cyrix.
+	* cpuid.c: Model 9 for the WinChip 3 is moved to the Centaur section
+	  [decode_synth_via()], from the datasheet page 3-11:
+	  http://datasheets.chipdb.org/IDT/x86/WinChip3/winchip_3_datasheet.pdf
+	* cpuid.c: The Cyrix CPU detection guide [112ap] also offers some
+	  possible codenames from page 20, table 17 Cx486SLC/DLC/SRx/DRx (M0.5)
+	  up to table 26 for the GXm.
+
+Mon Jan  4 2021 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Corrected decode_amd_model()'s (0,15),(4,0) decodings for bti
+	  values 0x29, 0x2a, and 0x2b.
+	* cpuid.c: Corrected wrong register passed to print_40000001_edx_kvm().
+
+Mon Nov  2 2020 Brian Inglis <Brian.Inglis@SystematicSw.ab.ca>
+	* Makefile: Set BUILDROOT=$(DESTDIR) for easier Cygwin cygport support.
+
+Mon Oct 12 2020 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added (synth) decoding for (6,15),(3,0) AMD R-Series Bald
+	  Eagle based on instlatx64 sample.
+	* cpuid.c: Added rudimentary synth & uarch decoding for Montage Jintide
+	  Gen1, a CPU based on Intel Skylake (0,6),(5,5), and detectable by brand
+	  string.
+	* cpuid.c: Fixed append_uarch() to pass stash, which improves uarch
+	  [suffix] for Montage, Zhaoxin, and ZhangJiang CPUs.
+
 Tue Oct  6 2020 Todd Allen <todd.allen@etallen.com>
 	* Made new release.
 
