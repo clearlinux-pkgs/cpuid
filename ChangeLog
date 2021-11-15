@@ -1,3 +1,54 @@
+Sun Nov 14 2021 Todd Allen <todd.allen@etallen.com>
+	* Made new release.
+
+Mon Nov  8 2021 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Updated (uarch synth) for Bergamo to say "Zen 4c".
+
+Fri Nov  5 2021 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added (synth) decoding for Pentium Gold G5420 (0,6),(9,14),10,
+	  based on a sample from Andrey Rahmatullin.  Previously, I knew only of
+	  variants with stepping 11.
+	* cpuid.c: Renamed Golden Cove & derivatives phys (physical properties)
+	  to use new Intel 7 branding.  Likewise for the preliminary Redwood
+	  Cove & Granite Rapids and Intel 4.
+
+Thu Nov  4 2021 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added (synth) decoding for AMD Storm Peak (preliminary).
+	* cpuid.c: Added (synth) decoding for Intel (0,6),(10,8) (preliminary).
+	* cpuid.c: Added (synth) decoding for Intel (0,6),(10,10) (preliminary).
+	* cpuid.c: Added (synth) decoding for Intel (0,6),(10,12) (preliminary).
+	* cpuid.c: Added (synth) decoding for Intel (0,6),(10,13) (preliminary).
+	* cpuid.c: Added (synth) decoding for Intel (0,6),(9,15) (preliminary).
+	* cpuid.c: Added Cougar Mountain name to Intel Puma 7, from MRG
+	  2018-Mar-6.
+
+Wed Nov  3 2021 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added (synth) decoding for AMD Lucienne A1 stepping.
+	* cpuid.c: Added (synth) decoding for AMD Van Gogh (preliminary).
+	* cpuid.c: Added (synth) decoding for AMD Mero (preliminary).
+	* cpuid.c: Added (synth) decoding for AMD Mendocino (preliminary).
+	* cpuid.c: Added (synth) decoding for AMD Chagall (preliminary).
+	* cpuid.c: Added (synth) decoding for AMD Badami (preliminary).
+	* cpuid.c: Added (synth) decoding for AMD Rembrandt (preliminary).
+	* cpuid.c: Added (synth) decoding for AMD Genoa (preliminary).
+	* cpuid.c: Added (synth) decoding for AMD Raphael (preliminary).
+	* cpuid.c: Added (synth) decoding for AMD Phoenix (preliminary).
+	* cpuid.c: Added (synth) decoding for AMD Bergamo (preliminary).
+
+Wed Nov  3 2021 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added hypervisor+3/edx (Microsoft) new fields.
+	* cpuid.c: Added hypervisor+7/eax (Microsoft) new field.
+	* cpuid.c: Added hypervisor+7/ecx (Microsoft) new field.
+	* cpuid.c: Added hypervisor+0xa/eax (Microsoft) new field.
+
+Wed Nov  3 2021 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Updated (synth) decoding for Alder Lake-S to include Core
+	  variants.
+	* cpuid.c: Added (synth) and (uarch) decoding for VIA/Centaur CHA (CNS).
+
+Tue Nov  2 2021 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added 7/1/eax AMX tile support, from Linux kernel.
+
 Sun Oct 31 2021 Todd Allen <todd.allen@etallen.com>
 	* Made new release.
 
