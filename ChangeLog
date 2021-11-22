@@ -1,3 +1,42 @@
+Sun Nov 21 2021 Todd Allen <todd.allen@etallen.com>
+	* Made new release.
+
+Sun Nov 21 2021 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Removed __LARGE64_FILES from __CYGWIN__, per Brian Inglis'
+	  request.
+	* cpuid.c: Renamed macros with names starting with underscores, which
+	  are resered names in C: __THING -> MaskTHING, _THING -> ShftTHING.
+	  Brian Inglis says this was an actual practical problem in Cygwin.
+	  This change makes the code less dense, but a bit easier to understand.
+
+Sat Nov 20 2021 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Distinguish (synth) decoding: AMD (8,15),(2,0) Dali CPUs:
+	  Ryzen vs. other.
+	* cpuid.c: Added to (synth) decoding: AMD Ryzen 1000/2000/3000/4000/5000
+	  series numbers.
+	* cpuid.c: Added to (synth) decoding: AMD Epyc Gen numbers.
+	* cpuid.c: Distinguish (synth) decodings for Threadripper CPUs.  For
+	  Zen & Zen+, only the brand distinguishes; for Zen 2 (and rumored for
+	  Zen 3), there are distinct models.
+	* cpuid.c: Distinguish (synth) decoding between Great Horned Owl & Banded
+	  Kestrel.
+	* cpuid.c: Distinguish (synth) decoding for Grey Hawk from Renoir.
+
+Thu Nov 18 2021 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added (synth) & (uarch synth) decoding for (0,6),(11,14)
+	  Golden Cove (Alder Lake) from Coreboot*.
+	* cpuid.c: Added (synth) & (uarch synth) decoding for (0,6),(6,7)
+	  Palm Cove (Cannon Lake) from DPTF*.
+	* cpuid.c: Added (synth) & (uarch synth) decoding for (0,6),(10,11)
+	  Redwood Cove (Meteor Lake-N) from DPTF*.
+	* cpuid.c: Added (synth) & (uarch synth) decoding for (0,6),(11,10)
+	  Raptor Cove (Raptor Lake-P) from DPTF*.
+
+Mon Nov 15 2021 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added (synth) decoding for (0,6),(11,7) Raptor Lake, from LX*.
+	* cpuid.c: Updated (uarch synth) phys strings for Intel 14nm and 10nm
+	  process nodes using 14nm+, 14nm++, 14nm+++, 10nm+, 10nm++.
+
 Sun Nov 14 2021 Todd Allen <todd.allen@etallen.com>
 	* Made new release.
 
