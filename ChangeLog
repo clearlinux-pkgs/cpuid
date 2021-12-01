@@ -1,3 +1,23 @@
+Mon Nov 29 2021 Todd Allen <todd.allen@etallen.com>
+	* Made new release.
+
+Fri Nov 26 2021 Todd Allen <todd.allen@etallen.com>
+	* From AMD Programmer's Manual, Vol 3, Rev 3.33, Appendix E:
+	* cpuid.c: Added 0x80000008/ebx CPU prefers: IBRS always on.
+	* cpuid.c: Renamed 0x80000008/ebx CPU prefers: STIBP always on.
+	* cpuid.c: Renamed 0x80000008/ebx INVLPGB supports TLB flush guest
+	  nested.
+	* cpuid.c: Added 0x8000001f/eax Secure TSC supported.
+	* cpuid.c: Added 0x8000001f/eax VMSA register protection.
+	* cpuid.c: Added 0x80000021/eax upper address ignore support.
+	* cpuid.c: Added 0x80000021/eax SMM_CTL MSR not supported
+	* cpuid.c: Added 0x80000021/ebx.
+	* cpuid.c: Added 0x80000022/ebx.
+
+Mon Nov 22 2021 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Correct (uarch synth) phys for Cascade Lake to 14nm++.
+	* cpuid.c: Correct (uarch synth) phys for Cooper Lake to 14nm++.
+
 Sun Nov 21 2021 Todd Allen <todd.allen@etallen.com>
 	* Made new release.
 
