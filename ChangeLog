@@ -1,3 +1,27 @@
+Fri Dec 10 2021 Todd Allen <todd.allen@etallen.com>
+	* Made new release.
+
+Fri Dec 10 2021 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Reorganized loop over 0x12 subleaves in do_real().  The old
+	  code assumed validity was at least partially determined by a bitmask
+	  in subleaf 0 (like for leaf 0x10), but that was wrong.  Thanks to
+	  Scott Raynor for pointing this out.
+	* cpuid.c: Added code for 0x12/(n>=2) subleaves to show invalid cases as
+	  such, instead of resorting to a raw dump.
+	* cpuid.c: Fixed missing loop over 0x1b subleaves in do_real().  This
+	  might become necessary if more target identifiers are added.
+	* cpuid.c: Added print_1b_n_target() to decode the MKTME target
+	  identifier.
+	* cpuid.c: Modified leaf 4 subleaf loop to include the terminating
+	  "no more caches" subleaf.  Modified print_reg() to abbreviate
+	  "no more caches" subleaves.
+	* cpuid.c: Cleaned up loops for leaves 7, 0x14, 0x17, 0x18, 0x1d, 0x20
+	  subleaves: max_tries (from subleaf 0) is available before the loop
+	  starts.
+	* cpuid.c: Modified leaf 0xb subleaf loop to exit for the right reason,
+	  level type == 0.  Also, it includes the terminating "invalid" subleaf.
+	  The similiar 0x1f leaf already did this.
+
 Mon Nov 29 2021 Todd Allen <todd.allen@etallen.com>
 	* Made new release.
 
