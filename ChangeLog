@@ -1,3 +1,41 @@
+Thu Feb 24 2022 Todd Allen <todd.allen@etallen.com>
+	* Made new release.
+
+Wed Feb 23 2022 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added (synth) and (uarch synth) decoding for AMD Rembrandt E1.
+
+Sat Feb 19 2022 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added hypervisor+4/eax (Xen) expanded destination id bit.
+
+Mon Jan 17 2022 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Removed bogus 7/1/eax bit 24 "AMX tile support".  The only
+	  claim for that was an inaccurate comment in the linux kernel, added
+	  2-Nov-2021, but the actual bit is in 7/0/edx, which already was
+	  present in cpuid.
+
+Sun Jan  9 2022 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Renamed 6/eax bit to 23 to mention Thread Director.
+	* cpuid.c: Widened 6/ecx number of enh hardware feedback classes from
+	  bits 8-11 to bits 8-15.
+	* cpuid.c: Renamed 7/1/eax bit to 10 to include "fast".
+	* cpuid.c: Added 7/1/ebx decoding.
+	* cpuid.c: Added 0x14/0/ebx decoding for support for IA32_RTIT_CTL
+	  EventEn & DisTNT bits.
+	* cpuid.c: Added synth decoding for (0,6),(11,15) Alder Lake, based on
+	  MSR_CPUID_table*.
+	* cpuid.c: Confirmed synth decoding for (0,6),(10,8) Rocket Lake.
+
+Tue Jan  4 2022 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added (synth) steppings based on instlatx64 samples:
+	  1,(0,5),(0,3),2 P24T C0, (0,6),(0,2),2 K75/Pluto/Orion A2,
+	  (0,6),(4,6),1 Crystal Well C1, (0,6),(7,14),5 Ice Lake-U/Y D1,
+	  (0,6),(9,7),2 Alder Lake-S C0, (0,6),(10,7),1 Rocket Lake B0.
+	* cpuid.c: Corrected missing Core name for (0,6),(9,7) Alder Lake-S A0
+	  stepping.
+
+Mon Dec 13 2021 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: In 0x18 leaves, line up values better.
+
 Fri Dec 10 2021 Todd Allen <todd.allen@etallen.com>
 	* Made new release.
 
@@ -977,6 +1015,8 @@ Sat Jan 11 2020 Todd Allen <todd.allen@etallen.com>
 	* Prettification of Thomas Friebel's 0x40000003 leaf fix: while loop.
 	* Reverted print_header() to use !raw (personal preference of mine).
 	* Format changes to & rearrangement of fanjinke's Hygon patch.
+	* Changed Ani Sinha's 0x80000008/ebx indirect branch predction barrier
+	  description to include IBPB acronym.
 
 Fri Jan  3 2020 Thomas Friebel <friebelt@amazon.de>
 	* Fixed bug that skipped half the subleaves in the 0x40000003 hypervisor
@@ -984,6 +1024,10 @@ Fri Jan  3 2020 Thomas Friebel <friebelt@amazon.de>
 	* Fixed contradictory try logic in print_header() for leaf 0x40000003.
 	* Fixed to use 0x40000003/ebx for high 32 bits of vtsc_offset,
 	  instead of using eax for both high & low 32 bits.
+
+Fri Nov  8 2019 Ani Sinha <ani.sinha@nutanix.com>
+	* cpuid.c: Added 0x80000001/ecx NB performance counter extensions &
+	  0x80000008/ebx indirect branch predction barrier.
 
 Mon May 13 2019 fanjinke <fanjinke@hygon.cn>
 	* Added Hygon support.
