@@ -1,3 +1,141 @@
+Mon Jun 20 2022 Todd Allen <todd.allen@etallen.com>
+	* Made new release.
+
+Sat Jun 18 2022 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added (synth) for (0,6),(9,7),1 Alder Lake-S B0 from
+	  Coreboot*.
+	* cpuid.c: Added (synth) stepping name for (0,6),(9,7),4 Alder Lake-U G0
+	  from Coreboot* (although this dubiously mixes partly contradictory
+	  info from two sources).
+	* cpuid.c: Added (synth) stepping name for (0,6),(9,7),5 Alder Lake-S H0
+	  from Coreboot*.
+	* cpuid.c: Added hypervisor+4/eax (Xen) upcalls with physical IRQ
+	  vectors from Xen*.
+	* cpuid.c: Added hypervisor+{0x80,0x81,0x82} (Microsoft) synthetic
+	  debugging leaves.
+	* cpuid.c: Eliminated print_header(), and distributed those headers
+	  throughout print_reg(), frequently using the try (subleaf) number to
+	  ensure they are printed only once.  Many headers already were like
+	  this, and it makes them more consistent.
+
+Sun Jun 12 2022 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Changed (synth) for Alder Lake-S to remove K/KF suffixes,
+	  because other suffixes (or no suffix) are available too.
+	* cpuid.c: Added (synth) for (0,6),(9,7),5 Alder Lake-S.
+	* cpuid.c: Added (synth) for (0,6),(9,7),3 Alder Lake-P/H.
+	* cpuid.c: Added (synth) for (0,6),(9,7),4 Alder Lake-U.
+
+Sat Jun 11 2022 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added 0xf/1/eax QoS monitoring counter size, both in raw
+	  form (-24 notation) and as a synthetic leaf the determines the
+	  value from the raw form and family/model information.
+	* cpuid.c: Added stash information to print_header() to avoid printing
+	  Xen-only headers for hypervisor+3 leaves of other hypervisors.
+	* cpuid.c: Rewrote the handling of subleaves (tries) for legacy raw
+	  input files.  Originally, I thought I only needed this support for
+	  those leaves which existed during that legacy period.  But the
+	  testbeds lean on that support for samples from instlatx64.  So now
+	  it's more general.
+	* cpuid.c: For leaf 0x80000020, rewrote the rules for subleaf processing
+	  based on the description in AMD64 Technology Platform Quality of
+	  Service Extensions (pub 56375 1.03): walk the bits in the mask.
+	* cpuid.c: Added 0x80000020/0/ebx bits 2 & 3, and renamed bit 1.
+	* cpuid.c: Added 0x80000020/1 subleaf header.
+	* cpuid.c: Added 0x80000020/2 subleaf.
+	* cpuid.c: Added 0x80000020/3 subleaf.
+	* cpuid.man: Added 56375: AMD64 Technology Platform Quality of Service
+	  Extensions
+
+Fri May 27 2022 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added 0x8000001f/eax virtual TSC_AUX supported, from Linux
+	  kernel.
+	* cpuid.c: Split 7/0/ebx decoding into Intel-specific & AMD-specific
+	  versions (using ugly macro to avoid code duplication), differing by
+	  bit 22: PCOMMIT (intel) vs. RDPID/TSC_AUX (amd).
+
+Wed May 25 2022 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added 0x80000022/eax AMD perfmon V2, from Linux kernel.
+
+Tue May 24 2022 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added 0x21 TDX guest leaf, as ASCII text
+	  (e.g. "IntelTDX    ").
+
+Sat May 21 2022 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Changed (synth) for AMD (10,15),(5,*) Cezanne to also mention
+	  Barcelo, because instlatx64 samples show that they seem to be
+	  indistinguishable from cpuid information.
+
+Tue May 17 2022 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added synth decoding for stepping (0,6),(11,10),2
+	  Raptor Lake-P J0 from Coreboot*.
+
+Tue May  3 2022 Todd Allen <todd.allen@etallen.com>
+	* cpuid.man: Added 344425, "Architecture Specification: Intel Trust
+	  Domain Extensions (Intel TDX) Module".
+	* cpuid.c: Removed 7/0/ecx bus lock detection LX*, Qemu* comment,
+	  because it now is documented in the above.
+	* cpuid.man: Added 343754, "Intel Trust Domain CPU Architectural
+	  Extensions".
+	* cpuid.c: Added 0x12/0/eax bit 7: EVERIFYREPORT2 support, from the
+	  above.
+
+Tue May  3 2022 Stefan Kanthak <stefan.kanthak@nexgo.de>
+	* cpuid.c: Corrected spelling of 7/0/ecx "RDPID: read processor ID
+	  supported".
+
+Mon May  2 2022 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Clarified (synth) decoding for (10,15),(11,14) Alder Lake-N,
+	  based on LX*. Also added A0 stepping.
+	* cpuid.c: Added defined() checks around uses of __GNUC__,
+	  __GNUC_MINOR__, and __GNUC_PATCHLEVEL__, as suggested by Stefan
+	  Kanthak.
+	* Makefile: Added -Wundef to compilation options to check the above,
+	  although they always are defined with gcc.
+	* cpuid.c: To simplify the new #if's for __builtin_clzl, added new
+	  USE_BUILTIN_CLZL macro.
+
+Sat Apr 30 2022 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added (synth) decoding for (10,15),(0,1),2 Milan B2 stepping.
+
+Tue Apr  5 2022 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Changed (0,6),(9,10) Alder Lake synth decoding stepping names,
+	  based on Coreboot*, evidently from Intel doc 626774.  I cannot find
+	  that document.  Perhaps it is under NDA.
+	* cpuid.c: Added (0,6),(1,9) ZhangJiang synth & uarch decoding from
+	  Google_cpu_features*.
+	* cpuid.c: Added (0,7),(1,11) WuDaoKou synth & uarch decoding from
+	  Google_cpu_features*.  Also corrected (0,7),(0,11) uarch decoding.
+	* cpuid.c: Added (0,7),(3,11) LuJiaZui uarch decoding from
+	  Google_cpu_features*.  Also simplified its synth decoding.
+	* cpuid.c: Added (0,7),(5,11) YongFeng synth & uarch decoding from
+	  Google_cpu_features*.  Still somewhat speculative.
+
+Fri Mar 25 2022 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added hypervisor+4/eax (Microsoft) bits 15, 17, 18.
+	* cpuid.c: Added hypervisor+4/ecx (Microsoft) leaf.
+	* cpuid.c: Added many hypervisor+6/eax (Microsoft) fields.
+	* cpuid.c: Added hypervisor+0xa/eax (Microsoft) bit 22.
+	* cpuid.c: Added hypervisor+3/ebx (Microsoft) Isolation flag, from Linux
+	  kernel (arch/x86/include/asm/hyperv-tlfs.h).
+	* cpuid.c: Added hypervisor+0xc/{eax,ebx} (Microsoft) leaves, from Linux
+	  kernel (arch/x86/include/asm/hyperv-tlfs.h).
+
+Fri Mar 18 2022 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Corrected (synth) for (0,6),(9,10) Alder Lake to report Core
+	  where appropriate, instead of Atom always.  In fact, I've seen zero
+	  instances of Atoms with this core, so perhaps this was an early
+	  misunderstanding.  The (0,6),(9,7) Alder Lake-S core was added at the
+	  same time, also as an Atom, but was corrected much earlier.  So I've
+	  made the same correction here.
+
+Sat Mar 12 2022 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added (synth) decoding for (8,15),(9,0),2 Van Gogh A2 from
+	  instlatx64 sample.
+
+Thu Mar 10 2022 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added (synth) decoding for (0,6),(10,10),{0-1} A0 steppings,
+	  based on info from Coreboot*.
+
 Thu Feb 24 2022 Todd Allen <todd.allen@etallen.com>
 	* Made new release.
 
@@ -1015,7 +1153,7 @@ Sat Jan 11 2020 Todd Allen <todd.allen@etallen.com>
 	* Prettification of Thomas Friebel's 0x40000003 leaf fix: while loop.
 	* Reverted print_header() to use !raw (personal preference of mine).
 	* Format changes to & rearrangement of fanjinke's Hygon patch.
-	* Changed Ani Sinha's 0x80000008/ebx indirect branch predction barrier
+	* Changed Ani Sinha's 0x80000008/ebx indirect branch prediction barrier
 	  description to include IBPB acronym.
 
 Fri Jan  3 2020 Thomas Friebel <friebelt@amazon.de>
@@ -1027,7 +1165,7 @@ Fri Jan  3 2020 Thomas Friebel <friebelt@amazon.de>
 
 Fri Nov  8 2019 Ani Sinha <ani.sinha@nutanix.com>
 	* cpuid.c: Added 0x80000001/ecx NB performance counter extensions &
-	  0x80000008/ebx indirect branch predction barrier.
+	  0x80000008/ebx indirect branch prediction barrier.
 
 Mon May 13 2019 fanjinke <fanjinke@hygon.cn>
 	* Added Hygon support.
