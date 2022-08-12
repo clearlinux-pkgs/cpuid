@@ -1,5 +1,5 @@
 PKG_NAME := cpuid
-URL = http://www.etallen.com/cpuid/cpuid-20220620.src.tar.gz
+URL = https://www.etallen.com/cpuid/cpuid-20220812.src.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common

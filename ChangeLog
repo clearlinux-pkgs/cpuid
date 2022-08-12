@@ -1,3 +1,94 @@
+Fri Aug 12 2022 Todd Allen <todd.allen@etallen.com>
+	* Made new release.
+
+Fri Aug 12 2022 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Corrected (synth) decoding for (0,6),(8,6) Intel Snow
+	  Ridge/Parker Ridge.  It had been lumped in with Elkhart Lake, but only
+	  because that had been the only known core name for the Tremont uarch.
+	  These appear to be different cores.  Also added steppings from SSG*.
+
+Fri Aug  5 2022 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added 8000000a/edx X2AVIC flag, from Linux kernel patches
+	  It appears to be undocumented, so far.
+
+Thu Aug  4 2022 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Improved (synth) decoding for (0,6),(9,7),2, adding
+	  Added Alder Lake-HX.
+
+Wed Jul 27 2022 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Reverted May 27 2022 split of 7/0/ebx hack to report bit 22
+	  as RDPID on AMD architectures.  The AMD documentation is inconsistent
+	  on the location of this flag.  In E.3.6, it claims 7/0/ebx.  But in
+	  section 3, the RDPID instruction itself claims 7/0/ecx, as does the
+	  mention in Table 3-1.  This also is consistent with Intel
+	  architectures.  Thanks to Stefan Kanthak for pointing this out.
+
+Mon Jul 25 2022 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Generalized (0,6),(8,14),9,YP stepping case to include
+	  Pentium 4425Y, from instlatx64 sample.
+
+Thu Jul 14 2022 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Updated 7/0/edx comments to reflect original info source
+	  for SRBDS mitigation MSR available, previously just marked LX*.
+	* cpuid.c: Updated 7/0/edx comments to reflect original info source
+	  for RTM transaction always aborts, previously just marked LX*.
+	* cpuid.c: Added (vuln to branch type confusion synth) synthetic leaf
+	  to correct for the one known inaccuracy.
+	* cpuid.man: Added those two original source web pages from Intel:
+	  Intel Transactional Synchronization Extensions (Intel TSX) Memory and
+	  Performance Monitoring Update for Intel Processors (Article ID
+	  000059422), Special Register Buffer Data Sampling.
+
+Wed Jul 13 2022 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added 0x80000008/ebx not vulnerable to branch type confusion
+	  flag from "Technical Guidance For Mitigating Branch Type Confusion
+	  (White Paper)".  Also added a synthetic flag to correct the special
+	  case for Family 0x19, where the raw flag is documented to be wrong.
+	* cpuid.c: Added 7/2/edx indirect branch prediction related flags from
+	  Intel's "Branch History Injection and Intra-mode Branch Target
+	  Injection / CVE-2022-0001, CVE-2022-0002 / INTEL-SA-00598".
+	* cpuid.c: Added (uarch synth) decoding for (0,6),(6,14) Cougar
+	  Mountain, mentioned as Airmont by Intel's "Retpoline: A Branch Target
+	  Injection Mitigation".
+	* cpuid.man: Added "Branch History Injection and Intra-mode Branch Target
+	  Injection / CVE-2022-0001, CVE-2022-0002 / INTEL-SA-00598" and
+	  "Retpoline: A Branch Target Injection Mitigation".
+
+Tue Jul 12 2022 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Clarified (synth) for (0,6),(8,13) Tiger Lake-H from SSG*.
+
+Tue Jul 12 2022 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added support for hypervisor+3/ecx (Microsoft) flags.
+	* cpuid.c: Added support for hypervisor+0xa/eax (Microsoft) VMCS
+	  GuestIa32DebugCtl support flag.
+	* cpuid.c: Added support for hypervisor+0xa/ebx (Microsoft) VMCS
+	  HvFlushGuestPhysicalAddress* flag.
+
+Wed Jun 29 2022 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added (synth) for (0,6),(11,10),3 Raptor Lake-P Q0, from
+	  Coreboot*.
+
+Sat Jun 25 2022 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Lionel Debroux's patch used MAX_CPUS all the time.  But it
+	  really was meaningful only for the USE_KERNEL_SCHED_SETAFFINITY case
+	  (although, by happenstance, it may have been correct for all three
+	  cases).  Replace this with an nr_cpu_ids global, determined by
+	  get_nr_cpu_ids().  The simplest version just returns
+	  sysconf(_SC_NPROCESSORS_CONF), although that could be problematic on
+	  systems with non-contiguous CPU numbers.
+	* cpuid.c: For USE_KERNEL_SCHED_SETAFFINITY, improve this, and also
+	  support systems with > 1024 CPUs, by estimating nr_cpu_ids using a
+	  power-of-2 walk through successively larger cpu_set_t sizes until
+	  sched_getaffinity succeeds.
+	* cpuid.c: For systems using cpu_set_t (only Cygwin?), cap the
+	  nr_cpu_ids to CPU_SETSIZE.
+	* cpuid.c: The _SC_NPROCESSORS_CONF check in real_setup() is removed
+	  because it's redundant now.
+
+Wed Jun 22 2022 Lionel Debroux <lionel_debroux@yahoo.fr>
+	* cpuid.c: In do_real() and do_real_one(), avoid breaking out of loop
+	  because of downed CPUs.
+
 Mon Jun 20 2022 Todd Allen <todd.allen@etallen.com>
 	* Made new release.
 
