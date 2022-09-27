@@ -1,3 +1,18 @@
+Tue Sep 27 2022 Todd Allen <todd.allen@etallen.com>
+	* Made new release.
+
+Tue Sep 27 2022 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added synth decoding for (10,15),(6,1) Raphael, based on
+	  instlatx64 samples.
+
+Wed Aug 17 2022 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Fixed missing return statement in get_nr_cpu_ids()'s default
+	  case, used by Cygwin.  Thanks to Brian Inglis for reporting this.
+
+Tue Aug 16 2022 Umio-Yasuno <coelacanth_dream@proton.me>
+	* cpuid.c: Fixed title for AMD 0x8000001a leaf: Performance Optimization
+	  Identifiers.
+
 Fri Aug 12 2022 Todd Allen <todd.allen@etallen.com>
 	* Made new release.
 
