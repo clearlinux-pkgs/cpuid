@@ -1,3 +1,31 @@
+Mon Oct  3 2022 Todd Allen <todd.allen@etallen.com>
+	* Made new release.
+
+Mon Oct  3 2022 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added synth decoding for AMD Ryzen (Phoenix E0), based on
+	  sample from bakerlab.org.
+	* cpuid.c: Added synth decoding for AMD Ryzen (Storm Peak A1), based on
+	  sample from einstein11.aei.uni-hannover.de.
+	* cpuid.c: Added synth & uarch synth decoding for (0,6),(11,5) Intel
+	  Meteor Lake, based on MSR_CPUID_table*.
+	* cpuid.c: Added synth & uarch synth decoding for (0,6),(11,6) Intel
+	  Grand Ridge (Crestmont), based on MSR_CPUID_table*.
+	* cpuid.c: Added synth & uarch synth decoding for (0,6),(11,14) Intel
+	  Granite Rapids, based on MSR_CPUID_table*.
+	* cpuid.c: Confirmed several other existing synth & uarch decodings based
+	  on MSR_CPUID_table*, and updated comments (no functional changes).
+	* cpuid.c: Renamed 7/0/eax enh hardware feedback to simply Thread
+	  Director.  Evidently, Intel just calls it that now too.
+	* cpuid.c: Added 7/1/eax RAO-INT instructions, CMPccXADD instructions,
+	  ArchPerfmonExt is valid, WRMSRNS instructions, AMX-FP16, AVX-IFMA,
+	  RDMSRLIST & WRMSRLIST.
+	* cpuid.c: Added 7/1/edx AVX-VNNI-INT8, AVX-NE-CONVERT, PREFETCHIT*
+	  instructions.
+	* cpuid.c: Added 0x12/0/eax SGX ENCLU EDECCSA flag.
+	* cpuid.c: Added 0x23 Architecture Performance Monitoring Extended leaf
+	  decoding.
+	* cpuid.c: Corrected AVX512IFMA description: integer FMA, not just FMA.
+
 Tue Sep 27 2022 Todd Allen <todd.allen@etallen.com>
 	* Made new release.
 
