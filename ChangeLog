@@ -1,3 +1,46 @@
+Thu Dec  1 2022 Todd Allen <todd.allen@etallen.com>
+	* Made new release.
+
+Wed Nov 30 2022 Todd Allen <todd.allen@etallen.com>
+	* Clarified synth decoding for Intel Xeon D-1700.
+
+Wed Nov 30 2022 Todd Allen <todd.allen@etallen.com>
+	* Added uarch & synth decoding for AMD 4800S Desktop Kit, based on
+	  instlatx64 sample.  The generation is known to be Zen 2 (7nm), but
+	  the core is unknown.  I heard speculation for each of Ariel (rejected
+	  PlayStation 5 CPU), or Lockhart/Scarlett (rejected Xbox CPU).
+	* Added uarch decoding for AMD Genoa A1, based on instlatx64 sample
+	  from @IanCutress.
+
+Mon Nov 28 2022 Todd Allen <todd.allen@etallen.com>
+	* Added uarch decoding for (0,6),(12,15) Emerald Rapids, from LX*.
+
+Mon Nov 28 2022 Todd Allen <todd.allen@etallen.com>
+	* Added synth & uarch decoding for (10,15),(10,1) Bergamo.
+
+Mon Nov 28 2022 Todd Allen <todd.allen@etallen.com>
+	* Added 0x8000000a/edx bits: ROGPT, VNMI, IBS virtualization.
+	* Added 0x8000001b/eax bit: IBS L3 miss filtering support.
+	* Added 0x8000001f/eax bits: RMPQUERY instruction support,
+	  VMPL supervisor shadow stack support, VMGEXIT parameter support,
+	  virtual TOM MSR support, IBS virtual support for SEV-ES guests,
+	  SMT protection support, SVSM communication page MSR support,
+	  VIRT_RMPUPDATE & VIRT_PSMASH MSR support.
+	* Added 0x80000020/0/ecx bit: L3 range reservation support.
+	* Added 0x80000021/eax bits: automatic IBRS,
+	  CPUID disable for non-privileged.
+	* Added 0x80000022/eax bit: AMD LBR & PMC freezing.
+	* Added 0x80000022/ebx field: number of LBR stack entries.
+	* Added 0x80000023 leaf: Multi-Key Encrypted Memory Capabilities.
+	* Added 0x80000026 leaf: AMD Extended CPU Topology.
+
+Fri Nov 11 2022 Mateusz Guzik <mjguzik@gmail.com>
+	* cpuid.c: FreeBSD patch to use lseek64 and cpuset_setaffinity.
+
+Tue Oct 11 2022 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added 0x80000022/eax AMD LBR V2 flag, from LX*.
+	* cpuid.c: Note that (8,15),(10,0) Mendocino now is documented.
+
 Mon Oct  3 2022 Todd Allen <todd.allen@etallen.com>
 	* Made new release.
 
