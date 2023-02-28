@@ -1,3 +1,43 @@
+Tue Feb 28 2023 Todd Allen <todd.allen@etallen.com>
+	* Made new release.
+
+Sun Feb 26 2023 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Corrected 7/1/eax fast REP instructions, where I'd left the
+	  REP prefix out of the description.
+
+Wed Feb 22 2023 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added 7/1/eax FRED & LKGS bits, from Intel Flexible Return and
+	  Event Deliver (FRED).
+	* cpuid.man: Added Intel Flexible Return and Event Deliver (FRED).
+	* cpuid.c: Clarified 7/1/eax ArchPerfmonExt, which indicates that leaf
+	  0x23 is valid.
+
+Fri Feb 17 2023 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added (uarch synth) decoding for AMD Ryzen (Phoenix E0), based
+	  on sample from bakerlab.org, which I missed on Oct 3 2022, when I
+	  added the (synth) decoding.
+	* cpuid.c: Added 0x80000001/ebx PkgType decoding for AMD (10,15) Family
+	  19h CPUs: (2,1) Vermeer, (5,1) Cezanne/Barcelo, (6,1) Raphael, and
+	  (7,0) Phoenix, based on their respective PPPR's.
+
+Sun Feb 12 2023 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added very early (synth) decoding for Lunar Lake.  There is
+	  no corresponding (uarch synth) decoding, because no name is yet known
+	  for the uarch.
+
+Sat Feb 11 2023 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added (0,6),(9,10) Alder Lake Core names: i*-12000.
+	* cpuid.c: Differentiate (0,6),(9,7) & (0,6),(9,10) Alder Lake Gracemont
+	  E-cores from Golden Cove P-cores.
+	* cpuid.c: Differentiate (0,6),(11,7); (0,6),(11,10) & (0,6),(11,15)
+	  Raptor Lake Gracemont E-cores from Raptor Cove P-cores.
+	* cpuid.c: Added (synth) & (uarch synth) decoding for (10,15),(7,8)
+	  Phoenix 2, from Coreboot*.
+	* cpuid.c: Renamed print_hypervisor_3_eax_xen to
+	  print_hypervisor_3_0_eax_xen.
+	* cpuid.c: Added print_hypervisor_3_0_ebx_xen and decode Xen tsc mode.
+	* cpuid.c: Added (synth) decoding for (10,15),(6,1,1) Raphael B1.
+
 Fri Jan 20 2023 Todd Allen <todd.allen@etallen.com>
 	* Made new release.
 
