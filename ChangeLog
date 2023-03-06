@@ -1,3 +1,48 @@
+Tue Mar  6 2023 Todd Allen <todd.allen@etallen.com>
+	* Made new release.
+
+Sun Mar  5 2023 Todd Allen <todd.allen@etallen.com>
+	* Based on Intel-Linux-Processor-Microcode-Data-Files (ILPMDF*), made
+	  the following (synth) changes:
+	* cpuid.c: Updated (0,6),(3,7),8 Bay Trail with stepping name C0.
+	* cpuid.c: Added (0,6),(4,5),1 Haswell-ULT C0/D0 stepping.
+	* cpuid.c: Corrected (0,6),(4,6),1 Crystal Well to C0 stepping.
+	* cpuid.c: Updated (0,6),(4,7),1 Broadwell to include E0 stepping.
+	* cpuid.c: Added (0,6),(5,5),3 Skylake B1 (Xeon Scalable).
+	* cpuid.c: Added (0,6),(5,5),5 Skylake A0 (Xeon Scalable).
+	* cpuid.c: Added (0,6),(5,5),11 Cooper Lake A1 (Xeon Scalable).
+	* cpuid.c: Updated (0,6),(5,14),3 Skylake-H/S/E3, adding N0 & S0
+	  steppings.
+	* cpuid.c: Added (0,6),(6,10),5 Ice Lake C0 (Xeon Scalable).
+	* cpuid.c: Added (0,6),(6,12),1 Ice Lake B0.
+	* cpuid.c: Updated (0,6),(8,6),4 Snow Ridge with stepping B0.
+	* cpuid.c: Updated (0,6),(8,6),5 Snow Ridge with stepping B1.
+	* cpuid.c: Added (0,6),(8,6),1 Lakefield B2/B3 stepping.
+	* cpuid.c: Corrected (0,6),(8,12),1 Tiger Lake stepping to B1.
+	* cpuid.c: Added (0,6),(8,12),2 Tiger Lake C0.
+	* cpuid.c: Added (0,6),(8,14),10 Coffee Lake D0.
+	* cpuid.c: Added (0,6),(8,14),13 Whiskey Lake-U V0 stepping.
+	* cpuid.c: Added (0,6),(8,15) Sapphire Rapids numerous steppings.
+	* cpuid.c: Updated (0,6),(9,12) Jasper Lake with stepping A1.
+
+Thu Mar  2 2023 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Differentiate (0,6),(8,10) Lakefield P-cores from Tremont
+	  E-cores, much as I previously did for Alder Lake & Raptor Lake.
+	* cpuid.c: In decode_uarch_intel, for known Hybrid chips (Alder Lake,
+	  Raptor Lake & Lakefield), only decode the uarch if it's one of the two
+	  known hybrid types.  However, some (0,6),(9,7) Alder Lake's are
+	  non-hybrid (Golden Cove only), so also decode core type == 0x00 there.
+	* cpuid.c: In the Intel Core era, uarch families are identified only by
+	  the initial uarch in the family.  So the family names in {braces},
+	  which also are uarch names, can be confusing.  So, change (synth) and
+	  (uarch synth) for those families to explain the relationships between
+	  the subsequent uarch and the initial uarch, in the form of
+	  "shrink of", "optim of", and the unusual "backport of".
+	* cpuid.c: Added (4th Gen) to the (synth) description of (10,15),(1,*)
+	  AMD EPYC Genoa.
+	* cpuid.c: Updated (synth) for (10,15),(7,*) AMD Phoenix & Phoenix 2
+	  CPUs to claim 4nm process.
+
 Tue Feb 28 2023 Todd Allen <todd.allen@etallen.com>
 	* Made new release.
 
