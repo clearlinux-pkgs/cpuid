@@ -1,4 +1,87 @@
-Tue Mar  6 2023 Todd Allen <todd.allen@etallen.com>
+Thu Apr  6 2023 Todd Allen <todd.allen@etallen.com>
+	* Made new release.
+
+Thu Apr  6 2023 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Fixed bug in print_apic_synth() when interpreting leaf 0xb
+	  and 0x1f bit widths: In fact, they are bit *offsets*, different from
+	  the *widths* of leaf 4!  So the (APIC width synth) often has been off
+	  by 1, and the (APIC synth) PKG_ID & CORE_ID values often have been
+	  shifted incorrectly.
+	* cpuid.c: For 0xb/*/eax & 0x1f/*/eax, rename field to "bit width of
+	  level & previous levels" to reflect this definition.
+	* cpuid.c: In print_apic_synth(), decode_mp_synth(), and
+	  print_mp_synth(), support APIC bit fields for the newest 4 topology
+	  layers: module, tile, die, die group.  And for the mp version, also
+	  the older cu & pkg levels.
+	* cpuid.c: In print_apic_synth(), use the extended APIC ID's when
+	  available in a variety of leaves.
+	* cpuid.c: In print_apic_synth() & decode_mp_synth(), support leaf 0xb
+	  method for AMD/Hygon.
+	* cpuid.c: In decode_mp_synth(), for the 1/0x80000008 method, use the
+	  same family-specific technique to differentiate CU's from cores, or
+	  cores from threads as in print_apic_synth().
+
+Tue Apr  4 2023 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added prelim Bergamo A1 stepping from sample from @YuuKi_AnS.
+
+Fri Mar 31 2023 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added 7/1/edx AMX-COMPLEX instructions.
+	* cpuid.c: Added 7/2/edx UC-lock disable.
+	* cpuid.c: Added 0x10/n/ecx non-contiguous 1s value supported.
+	* cpuid.c: Added 0x1c/ecx event logging supported bitmap.
+	* cpuid.c: Added 0x23/0/ebx decoding.
+
+Tue Mar 28 2023 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Decode 0x80000026/1/ebx core type & native model.
+
+Tue Mar 28 2023 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: For 0x80000021/eax, capitalize REP STOSB & REP CMPSB to match
+	  Intel versions in 7/1/eax.
+	* cpuid.c: For 0x80000022/ecx, shorten description, show bitmask only in
+	  hex.
+
+Tue Mar 28 2023 Smita Koralahalli Channabasappa <Smita.KoralahalliChannabasappa@amd.com>
+	* cpuid.c: Update CPUID utility with new feature bits as documented in
+	  the AMD Processor Programming Reference for Family 19h and Model 11h:
+	  0x8000000a/edx extended LVT offset fault change
+	  0x80000021/eax enhanced predictive store forwarding, FSRS, FSRC,
+	  FsGsKernelGsBaseNonSerializing
+	  0x80000022/ebx number of available UMC PMCs
+	  0x80000022/ecx bitmask representing active UMCs
+
+Tue Mar 28 2023 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Differentiate preliminary (uarch synth) for (0,6),(10,10);
+	  (0,6),(10,11); (0,6),(10,12); and (0,6),(11,5) Crestmont Atom cores
+	  from their Redwood Cove counterparts.
+	* cpuid.c: Add preliminary (synth) & (uarch synth) for (0,6),(12,6)
+	  Lion Cove & Skymont, from LX*.
+
+Sat Mar 25 2023 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added 12/0/eax SGX ENCLS EUPDATESVN bit.
+	* cpuid.c: Added 0x1f/*/ecx level type value "die group (6)".
+
+Mon Mar 20 2023 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added (synth) decoding for (0,6),(8,15) Sapphire Rapids D &
+	  E0 steppings from coreboot*.
+	* cpuid.c: Improved (synth) decoding for (0,6),(6,10) Scalable 3rd Gen
+	  Xeons to Ice Lake-SP.  Also, improved decoding for engr samples where
+	  the brand string omits Xeon & Bronze/Silver/Gold/Platinum.
+
+Fri Mar 17 2023 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Improved (synth) decoding for (0,6),(11,14) Intel N-Series.
+	* cpuid.c: Differentiate (synth) & (uarch synth) for (0,6),(11,14)
+	  Alder Lake-N based on core type, much like for other Alder Lake models.
+	  This corrects the cores to Gracemont.  As for Golden Cove, perhaps
+	  P-cores never will exist for this model but, if they do, they should
+	  now be decoded correctly.
+	* cpuid.man: Added 759603: Intel Processor and Intel Core i3 N-Series
+	  Datasheet, Volume 1 of 2.
+	* cpuid.c: Updated (synth) decoding for (0,6),(11,15),5 with
+	  Raptor Lake-S/HX/P.
+	* cpuid.c: Updated (synth) decoding for (0,6),(11,10) with
+	  Raptor Lake-H/U/P.
+
+Mon Mar  6 2023 Todd Allen <todd.allen@etallen.com>
 	* Made new release.
 
 Sun Mar  5 2023 Todd Allen <todd.allen@etallen.com>
