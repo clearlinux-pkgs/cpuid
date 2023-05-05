@@ -1,3 +1,43 @@
+Thu May  5 2023 Todd Allen <todd.allen@etallen.com>
+	* Made new release.
+
+Fri May  5 2023 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Fixed bug in (multi-processing synth) in the recently
+	  rewritten decode_mp_synth().  The CPU counts for higher levels were
+	  not dividing out counts from lower levels.  This is analogous to the
+	  way print_apic_synth() subtracts out bit widths from lower levels.
+
+Fri May  5 2023 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Differentiate Core i3-N300 N-Series from ordinary N-Series.
+	  (They appear to differ only in branding.)
+
+Fri Apr 28 2023 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added hypervisor+4/eax bit 21: use hypercalls for MMIO config
+	  space I/O, based on LX* (Michael Kelley PCI pass-thru patches).  Not
+	  documented by Microsoft yet.
+
+Tue Apr 25 2023 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: In real_setup(), make inability to switch to CPU 0 no longer
+	  a fatal error.  It is allowable for CPU 0 to be offlined, just like any
+	  other.
+
+Tue Apr 18 2023 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added (synth) decoding for (0,6),(8,15) Xeon W version of
+	  Sapphire Rapids, from instlatx64 sample.
+	* cpuid.c: Corrected (synth) & (uarch synth) for Sapphire Rapids:
+	  family is Golden Cove, not Sunny Cove.
+	* cpuid.c: Added (synth) & (uarch synth) Emerald Rapids family:
+	  Raptor Cove.
+	* cpuid.c: Added (synth) & (uarch synth) Granite Rapids family:
+	  Redwood Cove.
+	* cpuid.c: In decode_uarch_intel, mark Sapphire Rapids, Emerald Rapids
+	  & Granite Rapids with core_is_uarch to avoid replicating the name in
+	  (synth).
+
+Sun Apr 16 2023 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added (synth) decoding for (0,6),(10,10),2 Meteor Lake-M B0
+	  from Coreboot*.
+
 Thu Apr  6 2023 Todd Allen <todd.allen@etallen.com>
 	* Made new release.
 
