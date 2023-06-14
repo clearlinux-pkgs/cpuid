@@ -1,3 +1,45 @@
+Wed Jun 14 2023 Todd Allen <todd.allen@etallen.com>
+	* Made new release.
+
+Wed Jun 14 2023 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Improved (synth) identification for (0,6),(5,5),10 Intel
+	  Xeon Scalable (3rd Gen) (Cooper Lake A0), based on 634897 doc.
+	* cpuid.c: Changed (synth) identification for (0,6),(6,12) Intel Xeon
+	  D-1700/2700 (Ice Lake-D).  Intel docs 714071 claim the stepping is
+	  U1/U2, which contradicts ILPMDF*.  I'm using the actual docs.
+	* cpuid.c: Updated comments with new Intel docs.
+	* cpuid.c: Changed "Intel Scalable" to "Intel Xeon Scalable".
+	* cpuid.man: Added new Intel docs.
+	* cpuid.man: Added 613537, the new pub number for 336065, Intel Xeon
+	  Processor Scalable Family Specification Update.
+
+Mon Jun  5 2023 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added (synth) differentiation for (0,6),(9,10),4 Intel
+	  Pentium Gold 8500 series.
+
+Sat May 13 2023 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Made the (simple synth) fields non-default.  Too many people
+	  were interpreting them as definitive and ignoring the much better
+	  (synth) leaf, which uses the entirety of cpuid information.  This
+	  impacts leaves 1, 0x80000001, and 0x80860001.  The (simple synth)
+	  fields still are available, but only with the -S/--simple option.
+	* cpuid.c: Organized option flags that need to be passed deeply down in
+	  the print_reg* functions into a new print_opts_t, which will make
+	  future options easier to add.
+	* cpuid.c: Renamed the old "try" variables to "sub".  The word "try" was
+	  a remnant of the original leaf 4 subleaf implemntation, before
+	  subleaves were commonplace.  For leaf 4, one just kept "trying" to
+	  read more cache data until it failed.  But most subleaves don't work
+	  that way.
+
+Sat May 13 2023 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Updated (synth) decoding for (0,6),(8,15),{7,8} to mention
+	  steppings {S2,S3} from ILPMDF* 20230512.
+	* cpuid.c: Added (synth) decoding for (0,6),(11,14) pure Atom x7000E,
+	  as a variation on other Alder Lake-N CPUs.
+	* cpuid.c: Added (synth) decoding for (0,6),(9,10),4 Atom C1100 Arizona
+	  Beach.
+
 Thu May  5 2023 Todd Allen <todd.allen@etallen.com>
 	* Made new release.
 
