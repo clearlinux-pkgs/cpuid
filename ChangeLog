@@ -1,3 +1,134 @@
+Sun Mar 24 2024 Todd Allen <todd.allen@etallen.com>
+	* Made new release.
+
+Sun Mar 24 2024 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Updated synth decoding for (0,6),(12,15),2 Emerald Rapids
+	  A1/R1.
+	* cpuid.man: Added new Intel docs.
+
+Sat Mar 23 2024 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: In do_real(), for the 0x1b leaf, add a sanity check to avoid
+	  infinite recursion if a hypervisor never reports invalid (0) on any
+	  subleaf.  The sanity check checks for a subleaf identical to its
+	  predecessor, which is not reasonable.
+
+Sat Mar 23 2024 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added synth & uarch decoding for (0,6),(13,13) Clearwater
+	  Forest.
+	* cpuid.c: Updated (0,6),(8,12),1 to include stepping B0, from ILPMDF*
+	* cpuid.c: Updated (0,6),(11,15),5 to Raptor Lake stepping H0, based on
+	  preponderance of evidence.
+	* cpuid.c: Added synth decoding for (0,6),(10,10) Core Ultra CPUs.
+	* cpuid.c: Updated (0,6),(11,7) to include Core i*-14000.  Some CPUs
+	  having this branding, and it's not clear what's different from the
+	  Core i*-13000 versions.  The steppings don't seem to matter.
+	  Inspection suggests maybe CET_SSS.
+	* cpuid.c: Corrected synth decoding for (10,15),(1,8) Storm Peak: Ryzen
+	  Threadripper 7000.
+	* cpuid.c: Added synth decoding for (10,15),(7,5),2 AMD Ryzen Phoenix F2.
+	* cpuid.c: Added very preliminary uarch decoding for (10,15),(6,0) and
+	  (10,15),(7,0), both Zen 5.
+	* cpuid.c: Changed preliminary synth decoding for (0,6),(11,5) to Arrow
+	  Lake, based on Intel SDE 9.33.0.
+	* cpuid.c: Added synth decoding for (0,6),(8,13),0 Tiger Lake-H P0
+	  stepping.
+	* cpuid.c: Added synth decoding for (0,6),(11,13),0 Lunar Lake A0
+	  stepping.
+	* cpuid.c: Changed uarch decoding for (0,6),(13,13) to Darkmont, the
+	  presumed uarch for Clearwater Forest.
+
+Sat Mar 23 2024 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added 12/1/eax AEX attribute enabled, as described by Scott
+	  Raynor, Intel.
+	* cpuid.c: Added 7/1/eax NMI-source reporting.
+	* cpuid.c: Added 7/1/eax INVD prevention after BIOS done.
+	* cpuid.c: Renamed 7/1/ebx PKNDKB instruction.
+	* cpuid.c: Added 7/1/edx URDMSR, UWRMSR instructions.
+	* cpuid.c: Added 0xa/ebx additional events.
+	* cpuid.c: Added 0xf/1/eax non-CPU agent features.
+	* cpuid.c: For 0xf/0/edx supports L3 cache monitoring, removed
+	  redundant "QoS".
+	* cpuid.c: Renamed print_10_n_{eax,ecx} -> print_10_12_{eax,ecx}.
+	* cpuid.c: Added 0x10/0/ebx cache bandwidth allocation supported.
+	* cpuid.c: Replaced 0x10/{1,2}/ecx: non-CPU agent support.
+	* cpuid.c: Renamed 0x10/{1,2}/ecx: non-contiguous bitmask supported.
+	* cpuid.c: Added 0x10/5 Cache Bandwidth Allocation decoding.
+	* cpuid.c: Renamed 0x23/0/ebx IA32_PERFEVTSELx EQ bit supported.
+	* cpuid.c: Added 0x23/2 ACR counters bitmaps.
+
+Sat Sep 23 2023 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Corrected synth decoding for (10,15),(10,x) to EPYC (4th Gen)
+	  (server CPUs), instead of Ryzen (desktop CPUs).
+
+Wed Sep 13 2023 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added (0,6),(12,12) Panther Lake synth decoding from LX*, but
+	  left out corresponding uarch decoding which is alls rumors currently:
+	  maybe Panther Cove, Cougar Cove, or something else.
+
+Tue Sep  5 2023 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added hypervisor+0xc ebx isolation type new value: TDX (3)
+	  from LX*.
+
+Tue Sep  5 2023 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added (11,5),(0,0) Zen 5 uarch from LX*.
+	* cpuid.c: To decode_uarch_intel, added (0,6),(11,12) & (0,6),(11,13)
+	  Lion Cove & Skymont as uarch underpinning Lunar Lake.
+
+Wed Aug  9 2023 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added 0x80000021/eax selective branch prediction barrier,
+	  PRED_CMD[IBPB] flushes branch type preds.  They appear to be only
+	  synthetic flags provided for hypervisor guests!
+	* cpuid.c: Added 0x80000021/eax CPU not affected by SRSO flag, from LX*.
+
+Sat Aug  5 2023 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added (10,15),(8&9,0) uarch & synth decoding for AMD Instinct
+	  MI300, from LKML: https://lkml.org/lkml/2023/7/20/668 patches.
+	  In the past, Instinct MI* described just the GPU, but they seem to be
+	  conflating them into a product name here.
+
+Tue Aug  1 2023 Todd Allen <todd.allen@etallen.com>
+	* cpuid.: Added prelim uarch decoding for (11,15),(2,0) & (11,15),(4,0),
+	  both Zen 5, based on engr samples.  No synth decoding yet, because it
+	  isn't known yet.
+	* cpuid.c: Added prelim synth decoding for (0,6),(11,12) Lunar Lake from
+	  Intel SDE 9.24.0 misc/cpuid/lnl/cpuid.def.  No uarch decoding, because
+	  Lunar Lake uarch name is not known yet.
+	* cpuid.c: Added prelim synth decoding for (0,6),(9,5) Sapphire Rapids
+	  from Intel SDE 9.24.0 misc/cpuid/spr/cpuid.def.
+
+Fri Jul 14 2023 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added synth decoding for (0,6),(11,7),0 Raptor Lake A0
+	  stepping, from Coreboot*.
+
+Mon Jul  3 2023 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added 7/1/eax SHA512, SM3 & SM4 instructions.
+	* cpuid.c: Added 7/1/ebx TSE PBNDKB instruction.
+	* cpuid.c: Added 7/1/ebx AVX-VNNI-INT16 instructions.
+	* cpuid.c: Added 7/1/edx UIRET flexibly updates UIF.
+	* cpuid.c: Added 0x1b/2 TSE target.
+	* cpuid.c: Corrected sub-leaf walk of leaf 0x1b to stop immediately if
+	  sub-leaf 0 is invalid.
+
+Sun Jul  2 2023 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added (uarch synth) & (synth) decoding for (0,6),(12,5)
+	  Arrow Lake based on Lion Cove & Skymont.
+
+Sat Jul  1 2023 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added 0x80000008/ebx IBPB_RET.
+	* cpuid.c: Renamed 0x8000000a/edx extended LVT AVIC access changes.
+	* cpuid.c: Renamed 0x8000000a/edx guest VMCB addr check.
+	* cpuid.c: Added 0x8000000a/edx bus lock threshold.
+	* cpuid.c: Renamed several 0x80000020 leaves & fields.
+	* cpuid.c: Added 0x80000020/0/ebx assignable bandwidth monitoring
+	  counters.
+	* cpuid.c: Added 0x80000020/0/ebx SDCI allocation enforcement
+	* cpuid.c: Added 0x80000020/5 PQoS Assignable Bandwidth Monitoring
+	  Counters.
+
+Fri Jun 30 2023 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added (synth) decoding for (0,6),(10,10),4 Meteor Lake-M C0
+	  stepping from Coreboot*.
+
 Wed Jun 14 2023 Todd Allen <todd.allen@etallen.com>
 	* Made new release.
 
