@@ -1,3 +1,28 @@
+Tue Apr  9 2024 Todd Allen <todd.allen@etallen.com>
+	* Made new release.
+
+Sun Apr  7 2024 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added 0x8000000a/edx PMC virtualization.
+	* cpuid.c: Added 0x8000000a/edx idle HLT intercept.
+	* cpuid.c: Added 0x8000001f/eax PMC virtual support for SEV-ES/SNP.
+	* cpuid.c: Added 0x8000001f/eax mention of SEV-SNP to existing fields.
+	* cpuid.c: Added 0x8000001f/eax RMPREAD instruction.
+	* cpuid.c: Added 0x8000001f/eax secure AVIC support.
+	* cpuid.c: Added 0x8000001f/eax allowed SEV features support.
+	* cpuid.c: Added 0x8000001f/eax write to hypervisor in-used allowed.
+	* cpuid.c: Added 0x8000001f/eax IBPB on entry support.
+
+Sun Apr  7 2024 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added Siena to (10,15),(10,x) synth decoding, based on 58268
+	  Arch Overview.
+	* cpuid.man: Added 58268: AMD EPYC 8004 Series Architecture Overview.
+
+Sat Apr  6 2024 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added preliminary (10,15),(7,12) Hawk Point synth decoding.
+
+Mon Apr  1 2024 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Fixed spelling: EPGR->EGPR (extended GPR's).
+
 Sat Mar 30 2024 Todd Allen <todd.allen@etallen.com>
 	* Made new release.
 

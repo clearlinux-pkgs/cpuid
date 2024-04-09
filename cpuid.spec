@@ -6,10 +6,10 @@
 # autospec commit: f56f1fa
 #
 Name     : cpuid
-Version  : 20240330
-Release  : 40
-URL      : https://www.etallen.com/cpuid/cpuid-20240330.src.tar.gz
-Source0  : https://www.etallen.com/cpuid/cpuid-20240330.src.tar.gz
+Version  : 20240409
+Release  : 41
+URL      : https://www.etallen.com/cpuid/cpuid-20240409.src.tar.gz
+Source0  : https://www.etallen.com/cpuid/cpuid-20240409.src.tar.gz
 Summary  : dumps CPUID information about the CPU(s)
 Group    : Development/Tools
 License  : GPL-2.0
@@ -50,10 +50,10 @@ man components for the cpuid package.
 
 
 %prep
-%setup -q -n cpuid-20240330
-cd %{_builddir}/cpuid-20240330
+%setup -q -n cpuid-20240409
+cd %{_builddir}/cpuid-20240409
 pushd ..
-cp -a cpuid-20240330 buildavx2
+cp -a cpuid-20240409 buildavx2
 popd
 
 %build
@@ -61,7 +61,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1711831570
+export SOURCE_DATE_EPOCH=1712671594
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -104,7 +104,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1711831570
+export SOURCE_DATE_EPOCH=1712671594
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/cpuid
 cp %{_builddir}/cpuid-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/cpuid/4cc77b90af91e615a64ae04893fdffa7939db84c || :
