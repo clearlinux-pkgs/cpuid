@@ -1,3 +1,24 @@
+Tue Jul  9 2024 Todd Allen <todd.allen@etallen.com>
+	* Made new release.
+
+Sat Jul  6 2024 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added 6/eax IA32_HWP_CTL MSR supported.
+	* cpuid.c: Added 7/2/edx MONITOR perf unaffected by tbl overflow.
+	* cpuid.c: Added synth decoding for Hygon Dhyana B1 & C2.  Still no
+	  information on a uarch name for these, so decode_uarch_hygon() remains
+	  silent for them.
+
+Tue May 28 2024 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added uarch synth decoding for (0,6),(5,5),11 Cooper Lake.
+	  The synth decoding was already present.  Its absence from
+	  decode_uarch_intel was just an oversight.
+
+Sun May 12 2024 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Fixed division-by-zero error in decode_mp_synth Intel leaf
+	  1/4 (zero fallback).  This is meant for old, incomplete cpuid -r
+	  dumps, but even for hand-crafted dumps, determining 0 cores and then
+	  dividing by that 0 is unacceptable.
+
 Tue Apr  9 2024 Todd Allen <todd.allen@etallen.com>
 	* Made new release.
 
