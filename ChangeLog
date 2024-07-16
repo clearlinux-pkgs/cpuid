@@ -1,3 +1,14 @@
+Tue Jul 16 2024 Todd Allen <todd.allen@etallen.com>
+	* Made new release.
+
+Mon Jul 15 2024 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: For AMD Zen CPUs, overhauled uarch & synth decoding to
+	  determine the CPU model from only the extended model & high bit of the
+	  model field.  Also, determine the stepping (revision) mechanically
+	  from the low-order 3 bits of the model and the stepping number.
+	  This should correctly identify retail Zen 5 Ryzen's.  This also
+	  corrects some stepping bugs from the Zen 1 era.
+
 Tue Jul  9 2024 Todd Allen <todd.allen@etallen.com>
 	* Made new release.
 
