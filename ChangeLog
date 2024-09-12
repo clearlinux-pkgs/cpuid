@@ -1,3 +1,49 @@
+Thu Sep 12 2024 Todd Allen <todd.allen@etallen.com>
+	* Made new release.
+
+Wed Sep 11 2024 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: For (0,6),(11,14),0 Intel N-Series, add Twin Lake core
+	  name.  It can only be distinguished with MSR IA32_PLATFORM_ID (17h) --
+	  or by brand name (which would be unreliable if new brandings appear).
+
+Tue Aug 27 2024 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: For (synth) decoding of VIA (0,7),(5,11), removed Zhaoxin
+	  KaiXian KX-7000 possibility, based on findings that those likely are
+	  rebadged Intel CPUs instead.
+
+Mon Aug 26 2024 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: In decode_uarch_intel(), for Jintide Gen1, used family field
+	  to indicate that they're based on Intel Skylake.
+	* cpuid.c: In decode_uarch_via(), for ZhangJiang CPU's, used family
+	  field to to indicate that they're based on VIA C7.  Did not provide a
+	  family for WuDaoKou or LuJiaZui, because it isn't clear how far
+	  they have diverged.
+
+Tue Aug 20 2024 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Changed comments after 743844-012 corrects (0,6),(11,15),5
+	  to be stepping H0.
+	* cpuid.c: In decode_uarch_hygon(), widened Moksha name to include
+	  all of Hygon family (9,15).  Based on Jinke F. patch to perfmon2,
+	  which applies the name to all of fam18h.
+	* cpuid.c: In decode_uarch_hygon(), used family field to indicate that
+	  it's based on AMD Zen.
+
+Mon Aug 19 2024 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added missing AMD Ryzen numbers: Rembrandt=6000/7000,
+	  Mendocino=7000, Raphael=7000, Phoenix=7000/8000, Granite Ridge=9000.
+
+Sun Aug 11 2024 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Updated synth decoding for (0,6),(10,15) to detect
+	  Intel Xeon 6 (Sierra Forest) CPUs.
+
+Thu Jul 18 2024 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: For (0,6),(8,15),8, add Xeon Scalable (5th Gen).  Some of
+	  these have been rebranded from 4th Gen to 5th Gen: LCC U1.
+
+Wed Jul 17 2024 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added 0x80000007/edx fast CPPC, mentioned in the PPR for
+	  Family 19h Model 61h, Revision B1.
+
 Tue Jul 16 2024 Todd Allen <todd.allen@etallen.com>
 	* Made new release.
 
