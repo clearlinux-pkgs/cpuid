@@ -1,3 +1,11 @@
+Fri Sep 13 2024 Todd Allen <todd.allen@etallen.com>
+	* Made new release.
+
+Fri Sep 13 2024 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Fixed a warning about a potential buffer overflow in
+	  decode_synth_amd detected by gcc at -O2 (detected via an
+	  interprocedural optimaztion, I think).
+
 Thu Sep 12 2024 Todd Allen <todd.allen@etallen.com>
 	* Made new release.
 
