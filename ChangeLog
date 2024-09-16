@@ -1,3 +1,19 @@
+Mon Sep 16 2024 Todd Allen <todd.allen@etallen.com>
+	* Made new release.
+
+Sun Sep 15 2024 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Updated AMD Zen 3/4/5 die processes with specific TSMC nodes,
+	  where known & consistent.  (Earlier generations appear to be a mix of
+	  GloFo & TSMC.)
+	* cpuid.c: Updated AMD Instinct MI300 CPUs to MI300A/C.
+
+Sun Sep 15 2024 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Based on LLVM patch from AMD's Ganesh Gopalasubramanian:
+	* cpuid.c: Added numerous early AMD core names for Zen 5.
+	* cpuid.c: Updated AMD 4700S Desktop Kit from Oberon, the GPU name, to
+	  Cardinal, the CPU core name.
+	* cpuid.c: Added AMD 4800S Desktop Kit ProjectX core name.
+
 Fri Sep 13 2024 Todd Allen <todd.allen@etallen.com>
 	* Made new release.
 
