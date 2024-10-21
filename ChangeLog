@@ -1,3 +1,82 @@
+Mon Oct 21 2024 Todd Allen <todd.allen@etallen.com>
+	* Made new release.
+
+Fri Oct 18 2024 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added 7/1/eax MOVRS instructions.
+	* cpuid.c: Added 7/1/ecx RDMSR/WRMSRNS immediates supported.
+	* cpuid.c: Renamed 7/1/edx AVI-COMPLEX to AMX-complex.
+	* cpuid.c: Added leaf 0x1e subleaf walk with hard-coded max_subs of 1.
+	* cpuid.c: Added 0x1e/1 subleaf.
+	* cpuid.c: Changed leaf 0x23 subleaf walk to use a mask of subleaves.
+	* cpuid.c: Added 0x23/4 subleaf.
+	* cpuid.c: Added 0x23/5 subleaf.
+
+Fri Oct 18 2024 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Updated synth decoding for (0,6),(11,5) to Arrow Lake-U.
+	* cpuid.c: Changed uarch decoding for (0,6),(11,5) from
+	  Redwood Cove+Crestmont (from 319433-046's Meteor Lake claim) to
+	  Lion Cove+Skymont (from 319433-054's Arrow Lake-U claim).
+	* cpuid.c: Added uarch & synth decoding for Intel's (4,15),(0,0) and
+	  (4,15),(0,1): Nova Lake (Panther Cove), based on 319433-054's
+	  MSR_CPUID_table*.
+
+Wed Oct 16 2024 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: #ifdef'ed #define _GNU_SOURCE, in case it already was defined.
+	* cpuid.c: Marked real_get()'s quiet formal as UNUSED, which it will be
+	  if !defined(USE_CPUID_MODULE).
+	* cpuid.c: Resized decode_amd_model's proc formal to 34 bytes, which is
+	  just a tuned value: it's large enough to accomodate any returned
+	  strings, and small enough not to trip an overzealous gcc
+	  -Wformat-overflow=2 warning when this is used as an sprintf argument
+	  in decode_override_brand.
+
+Wed Oct 16 2024 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added cpuset_destroy to real_setup USE_SCHED_SETAFFINITY_NP,
+	  per Christof Meerwald.
+
+Wed Oct 16 2024 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Corrected print_80000001_ebx_amd PkgType logic to use
+	  MaskMm (AMD XM & high-order M bit), similar to previous changes to use
+	  FMm, etc. in decode_synth_amd().
+	* cpuid.c: Added print_80000001_ebx_amd PkgType for (10,15),(1,*) Genoa,
+	  (10,15),(10,*) Bergamo/Siena, and (11,15),(0,*) Turin.
+	* cpuid.c: Added 0x8000000a/edx EXITINFO1 non-interceptible shutdown.
+	* cpuid.c: Added 0x8000001a/eax 512-bit SSE executed full-width.
+	* cpuid.c: Added 0x8000001b/eax IBS load latency filtering support.
+	* cpuid.c: Added 0x8000001b/eax simplified DTLB page size & miss report.
+	* cpuid.c: Added 0x8000001f/eax guest intercept control support.
+	* cpuid.c: Added 0x8000001f/eax segmented RMP support.
+	* cpuid.c: Added many new fields to 0x80000021/eax.
+	* cpuid.c: Added 0x80000021/ebx return addr predictor size.
+	* cpuid.c: Widened 0x80000022/ebx number of available UMC PMCs.
+	* cpuid.c: Added leaf 0x80000025 Segmented RMP Table.
+	* cpuid.man: Added new AMD docs.
+
+Tue Oct 15 2024 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Fixed Haiku patch to use pthread_self, per Christof Meerwald.
+
+Tue Oct 15 2024 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Manually reverted Christof Meerwald's first NetBSD patch, and
+	  applied his replacement NetBSD & Haiku patch.
+	* cpuid.c: Cleaned up positions of the OS-specific #if/#ifdef blocks.
+	* cpuid.c: In real_get(), #ifdef'ed cpuid module lseek & read with
+	  USE_CPUID_MODULE.
+	* cpuid.c: Removed OS-specific lseek & off_t hacks, because they only
+	  were needed by the real_get() code, now under #ifdef USE_CPUID_MODULE,
+	  and that's Linux-specific.
+
+Tue Oct 15 2024 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added 7/1/ebx IA32_MISC_ENABLE cannot limit CPUID max.
+
+Fri Oct 11 2024 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added (synth) decoding for Intel Core Ultra 200S.
+	* cpuid.c: Added (synth) decoding for Intel Core Ultra 200V.
+	* cpuid.c: Changed Skymont & Lion Cove processes to TSMC N3/N3B.
+	* cpuid.man: Added new Intel docs.
+
+Tue Sep 24 2024 Christof Meerwald <cmeerw@cmeerw.org>
+	* cpuid.c: Add support for NetBSD.
+
 Mon Sep 16 2024 Todd Allen <todd.allen@etallen.com>
 	* Made new release.
 
