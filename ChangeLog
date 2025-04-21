@@ -1,3 +1,34 @@
+Sat Apr 19 2025 Todd Allen <todd.allen@etallen.com>
+	* Made new release.
+
+Sat Apr 19 2025 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added uarch & synth decoding for (0,6),(13,7) Raptor Cove,
+	  Bartlett Lake, based on LX*.
+
+Thu Apr  3 2025 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added 7/1/ecx asymmetric RDT-[AM].
+	* cpuid.c: Added 0x12/0/eax 256BITSGX EGETKEY256 & EREPORT2.
+	* cpuid.c: Changed leaf 0x1e subleaf walk to use to 0x1e/0/eax as
+	  max_subs, per new documentation.
+	* cpuid.c: Added 0x27 leaf.
+	* cpuid.c: Added 0x28 leaf.
+
+Mon Mar 31 2025 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: For synth decoding for (0,6),(11,14), stop special-casing the
+	  Alder Lake-N/Twin Lake CPUS based on "Core" brand.  It's a distinction
+	  without a difference, and the branding is too inconsistent.
+
+Wed Mar 26 2025 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Corrected typo in 0x8000000a/edx: idle HLT intercept.
+	* cpuid.c: Added hypervisor+3/ecx (Microsoft) fields, based on LX*
+	  patches from Nuno Das Neves: dispatch intr injection available,
+	  GHCB root mapping available.  I could find no actual docs.
+
+Tue Mar 25 2025 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Comment updates about Panther Lake.  Nothing substantive.
+	* cpuid.c: Comment updates about leaf 0x1a native model ID's.  Not
+	  conclusive or substantive.
+
 Sun Mar 16 2025 Todd Allen <todd.allen@etallen.com>
 	* Made new release.
 
