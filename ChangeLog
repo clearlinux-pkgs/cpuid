@@ -1,3 +1,37 @@
+Tue May 13 2025 Todd Allen <todd.allen@etallen.com>
+	* Made new release.
+
+Tue May 13 2025 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Updated (0,6),(10,13),1 (Granite Rapids) with stepping names
+	  B0/H0, from ILPMDF*.
+
+Mon May 12 2025 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Corrected synth decoding (0,6),(11,7) typos: 11 was 10.
+	* cpuid.c: Updated synth decoding for (0,6),(10,13) Xeon 6 6x00 Granite
+	  Rapids.
+	* cpuid.c: Updated synth decoding for (0,6),(10,14) Xeon 6 6x00P Granite
+	  Rapids.
+	* cpuid.c: Simplified synth decoding for (0,6),(10,15) Xeon 6 6700E
+	  Sierra Forest.
+	* cpuid.man: Added AMD docs: 58251, 58730.
+	* cpuid.man: Added new Intel docs: 820922, 835486, 843306.
+
+Fri Apr 25 2025 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Changed synth decoding for (0,6),(11,5),0 stepping from
+	  Arrow Lake-U A1 to A0, per a new spec update, 834774-007.
+
+Thu Apr 24 2025 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Changed synth decoding for (11,15),(0,8) to Shimada Peak,
+	  based on knowledge that the Zen 5 Threadripper is Shimada Peak, and
+	  https://docs.amd.com/v/u/en-US/dh300-amd-ryzen-threadripper-tr5.
+
+Mon Apr 21 2025 Todd Allen <todd.allen@etallen.com>
+	* cpuid.c: Added synth decoding for (0,6),(13,5) Wildcat Lake, based on
+	  Coreboot*.  For uarch decoding, just added comments, because it's all
+	  pure speculation.
+	* cpuid.c: Added comments about Hygon (9,15),(0,4) and (9,15),(0,6), for
+	  which no core names are known.
+
 Sat Apr 19 2025 Todd Allen <todd.allen@etallen.com>
 	* Made new release.
 
